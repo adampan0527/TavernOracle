@@ -50,3 +50,41 @@ AI Agent 在本代码库工作时，必须严格执行以下工作流：
 1. **查阅路由**：在接受用户任务后，首先查阅上表，定位相关的 [docs](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs) 文件并单点加载。
 2. **合规自检**：涉及输入捕获或 UI 交互的代码变更，必须依据 [compliance.md](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs/compliance.md) 校验是否触碰外挂/注入红线。
 3. **渐进式沉淀**：新增架构设计、协议变更或核心模块规范时，应在 [docs/](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs) 下创建或更新对应专题文档，保持 `AGENTS.md` 作为简洁目录索引的纯粹性。
+
+---
+
+## 5. 可视化交互汇报规范 (HTML Interactive Reporting Protocol)
+
+当用户询问“某个思路该怎么实现”或需要进行方案设计、算法演算、架构演示时，**AI Agent 必须通过交互式 HTML（结合图文、动效、流程演练等）进行直观汇报演示**。
+
+汇报内容统一归档于根目录的 [report_html/](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/report_html) 文件夹中，并严格遵守以下结构与规则：
+
+### 5.1 目录组织与命名契约
+- **根目录**：[report_html/](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/report_html) 为汇报专用的根目录。
+- **子目录命名**：每个独立汇报必须在 `report_html/` 下新建一个独立文件夹，统一命名为 **`3位有前导0的数字_简短名称`**（例如：`001_example`、`002_knapsack_dp_demo`、`003_hud_overlay_flow`），按序自增。
+- **统一入口**：每个汇报子文件夹内**必须且只能以 `index.html` 作为统一入口文件**。
+- **自包含与高内聚**：
+  - 该汇报所需的子页面、样式表（CSS）、交互动效脚本（JS）、多媒体资源等，均必须整理归类在该子目录内部（如 `001_example/css/`、`001_example/js/`、`001_example/assets/`）。
+  - 目录层次必须结构清晰、低耦合，便于用户查看与后续快速修改调整。
+
+### 5.2 汇报产出标准
+1. 生成完整的交互演示页面，确保可通过浏览器本地直接打开并顺畅交互。
+2. 汇报完成后，在对话中向用户说明汇报核心摘要，并输出包含 `file://` 协议的可点击绝对路径（例如：`file:///Users/panyan/Desktop/coding_project/app/TavernOracle/report_html/001_example/index.html`）。
+
+### 5.3 数学公式渲染标准与 CSS 避坑规范
+**【历史教训与硬性底线】严禁在 HTML 页面中出现排版错乱、未编译源码或字符断裂：**
+1. **公式渲染标准（自包含 KaTeX 引擎）**：
+   - 涉及数学公式、变量推导（如 $P_{\text{lethal}}$、$w_{\text{tempo}}$、$\Delta V(a)$）时，汇报子目录必须就地引入自包含的 KaTeX 库（`lib/katex/`，包含 css、js 与 fonts），确保本地离线脱机时也能渲染出学术级数学排版。严禁在页面暴露未经编译的原始 `$` 源码。
+2. **严防 CSS 破坏行内排版**：
+   - 标题与文本容器（如 `h2`、`h3`、`<p>`）**严禁设置 `display: flex; gap: ...`**，否则会将行内的数学公式元素和普通文本节点拆解为独立 Flex 子项，造成灾难性的字符空格断裂（如出现 `( P lethal ...)` 错位）。
+3. **离线可用与零失效依赖**：
+   - 样式、脚本与字体必须完全自包含在汇报子目录内，避免依赖因网络波动或跨域问题导致加载失败的外部 CDN。
+
+### 5.4 Playwright 自动化渲染验收协议 (Playwright Verification Protocol)
+**【结束任务前的强制红线】所有 HTML 汇报在交付给用户前，必须通过 Playwright 自动化验证：**
+1. 必须使用 Playwright 启动无头浏览器加载目标 `index.html`。
+2. 自动化断言检验：
+   - 确认 KaTeX 数学公式渲染元素（`.katex`）匹配存在，页面文本无裸露未编译字符。
+   - 模拟执行关键交互逻辑（如滑块拖动、模式切换），确保 DOM 响应无异常。
+   - 控制台零脚本错误（Zero Console Errors）。
+3. 生成并视觉核验渲染截图无误后，方可向用户交付并输出汇报链接。

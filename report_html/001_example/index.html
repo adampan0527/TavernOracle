@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>001_example - TavernOracle 汇报演示模板</title>
+  <link rel="stylesheet" href="lib/katex/katex.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="lib/katex/katex.min.js"></script>
+  <script defer src="lib/katex/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="tag">汇报规范示例 · DEMO 001</div>
+      <h1>TavernOracle 可视化汇报模板</h1>
+      <p class="subtitle">展示图文结合、动态时延链路以及战力生死线风控交互模拟</p>
+    </header>
+
+    <!-- 架构演示卡片 -->
+    <section class="card">
+      <h2>⚡ 全链路 15ms 实时响应架构</h2>
+      <p>通过官方只读 <code>Power.log</code> 日志流与双模决策大脑，全流程处理时延控制在 15 毫秒内：</p>
+      
+      <div class="pipeline-flow">
+        <div class="pipeline-step">
+          <div class="step-num">Step 01</div>
+          <div class="step-title">日志捕获</div>
+          <div class="step-desc">Power.log 增量抓取与 TagChange 实体匹配</div>
+          <div class="badge-metric">耗时 ≤ 2ms</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-num">Step 02</div>
+          <div class="step-title">状态还原</div>
+          <div class="step-desc">HearthDb 元数据映射、酒馆快照与金币计算</div>
+          <div class="badge-metric">耗时 ≤ 3ms</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-num">Step 03</div>
+          <div class="step-title">决策求解</div>
+          <div class="step-desc">贝叶斯后验 + 分支定界背包 DP 搜索</div>
+          <div class="badge-metric">耗时 ≤ 5ms</div>
+        </div>
+
+        <div class="pipeline-step">
+          <div class="step-num">Step 04</div>
+          <div class="step-title">HUD 渲染</div>
+          <div class="step-desc">Win32 WS_EX_TRANSPARENT 穿透无感高亮显示</div>
+          <div class="badge-metric">耗时 ≤ 5ms</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 交互模拟器卡片 -->
+    <section class="card">
+      <h2>🎮 战力生死线模拟调节器 ($P_{\text{lethal}}$ 调节阀交互演练)</h2>
+      <p>拖动下方滑块调整下一回合的<strong>暴毙概率预测值 ($P_{\text{lethal}}$)</strong>，实时观察决策大脑的权重自适应突变：</p>
+
+      <div class="interactive-box">
+        <div class="control-row">
+          <label for="lethal-slider">下回合暴毙概率 ($P_{\text{lethal}}$): <strong id="lethal-value">15%</strong></label>
+          <input type="range" id="lethal-slider" min="0" max="100" value="15">
+        </div>
+
+        <div class="control-row" style="font-size: 0.9rem; color: #8b949e;">
+          <div>即时战力保命权重 ($w_{\text{tempo}}$): <strong id="tempo-weight" style="color: #38bdf8;">1.07</strong></div>
+          <div>远期成长贪婪权重 ($w_{\text{scale}}$): <strong id="scale-weight" style="color: #f59e0b;">0.86</strong></div>
+        </div>
+
+        <div id="status-indicator" class="status-indicator">
+          <div id="strategy-title" style="font-weight: 700; color: #10b981;">🛡️ 稳态发展模式 (Greedy / Scaling Mode)</div>
+          <div id="strategy-desc" class="decision-result">暴毙风险处于安全区间，建议升至 4 本并保留核心对子，争取后期成型。</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      TavernOracle 汇报专用模板 · 目录架构规范：<code>report_html/001_example/index.html</code>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

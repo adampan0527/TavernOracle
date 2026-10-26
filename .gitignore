@@ -1,0 +1,18 @@
+# Operating System files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build / IDE
+bin/
+obj/
+dist/
+build/
+.vs/
+.vscode/
+.idea/
+*.log
