@@ -39,6 +39,7 @@
 | **决策算法与数学建模** | [decision_engine.md](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs/decision_engine.md) | 模式 A（贝叶斯后验 + 战力生死线 + 组合背包 DP）与模式 B（Set Transformer 模仿学习）数学公式与推理拓扑 |
 | **表现层与 HUD 悬浮窗** | [presentation_hud.md](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs/presentation_hud.md) | Win32 API 点击穿透实现（`WS_EX_TRANSPARENT`）、卡面微标规范、窗口自适应吸附 |
 | **技术选型与迭代规划** | [roadmap_and_tech_stack.md](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs/roadmap_and_tech_stack.md) | HDT 插件方案 vs Tauri 独立版选型对比、4 周敏捷路线图、开源生态参考 |
+| **开发规范与 UI 系统** | [dev_specifications.md](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs/dev_specifications.md) | 代码与性能规范（零 GC、15ms 预算）、UI/UX 视觉系统、微标规范 |
 | **立项说明书全本** | [PROJECT_STARTUP.md](file:///Users/panyan/Desktop/coding_project/app/TavernOracle/docs/PROJECT_STARTUP.md) | 项目立项原始全景规格说明书（全量归档） |
 
 ---

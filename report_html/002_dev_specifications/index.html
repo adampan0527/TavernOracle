@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>002_dev_specifications - TavernOracle 开发与UI设计规范总览</title>
+  <link rel="stylesheet" href="lib/katex/katex.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="lib/katex/katex.min.js"></script>
+  <script defer src="lib/katex/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="tag">项目工程与体验体系 · SPEC 002</div>
+      <h1>TavernOracle 开发与视觉设计规范</h1>
+      <p class="subtitle">涵盖技术选型、15ms 零 GC 编码标准、暗夜电竞 HUD 视觉系统与微标交互演示</p>
+    </header>
+
+    <!-- 1. 技术栈与语言分工 -->
+    <section class="card">
+      <h2>1. 技术栈选型与语言职责划分</h2>
+      <p>为满足 30 秒绳子时间内输出极低时延决策，并最大化复用炉石开源生态，工程划分为三大语言阵营：</p>
+
+      <div class="spec-grid">
+        <div class="spec-item">
+          <span class="spec-badge badge-csharp">主干首选 · C# (.NET 8)</span>
+          <h3>生产级 HDT 插件宿主</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            深度整合国际开源基础设施：<code>HearthDb</code>（全卡牌元数据）、<code>Bob's Buddy</code>（千次蒙特卡洛战力模拟）及 <code>LogWatcher</code>。
+          </p>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #c9d1d9;">
+            <li>1~2 周即可快速交付可用 MVP</li>
+            <li>原生 WPF 穿透悬浮窗与 Win32 吸附</li>
+            <li>算法求解耗时 $\le 5\text{ ms}$</li>
+          </ul>
+        </div>
+
+        <div class="spec-item">
+          <span class="spec-badge badge-rust">备选轻量 · Rust + Tauri</span>
+          <h3>跨平台独立客户端</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            脱离 HDT 宿主独立运行，Rust 负责异步读取 <code>Power.log</code>，前端由 Webview2 渲染现代毛玻璃 HUD。
+          </p>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #c9d1d9;">
+            <li>内存占用极低（&lt; 40MB）</li>
+            <li>现代前端（TypeScript / Tailwind）丰富动效</li>
+            <li>强类型内存安全，零 GC 垃圾收集干扰</li>
+          </ul>
+        </div>
+
+        <div class="spec-item">
+          <span class="spec-badge badge-python">研究与离线 · Python (PyTorch)</span>
+          <h3>AI 行为克隆与模型训练</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+            负责解析万分段职业选手实战录像（Replay），训练 Set Transformer 跨实体自注意力模型。
+          </p>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #c9d1d9;">
+            <li>导出为 ONNX 格式交付运行时推理</li>
+            <li>零样本机制语义向量编码（Zero-Shot）</li>
+            <li>天梯胜率矩阵与单卡先验爬虫管道</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 代码与性能工程规范 -->
+    <section class="card">
+      <h2>2. 15ms 零 GC 编码与合规红线</h2>
+
+      <div class="spec-grid">
+        <div class="spec-item">
+          <h3>⚡ 零 GC 垃圾回收优化</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            在 30 秒密集决策阶段，避免垃圾回收导致的掉帧卡顿：
+          </p>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #c9d1d9; margin-top: 0.5rem;">
+            <li>严禁在 DP 搜索循环中调用 <code>new</code> 分配短期堆对象。</li>
+            <li>禁止高频使用 LINQ，改用定长数组与内存池 <code>ArrayPool&lt;T&gt;</code>。</li>
+            <li>种族与状态采用整型位掩码（BitMask），协同计算复杂度达到 $O(1)$。</li>
+          </ul>
+        </div>
+
+        <div class="spec-item">
+          <h3>🛡️ 绝对安全红线清单</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            严格遵守暴雪“纸笔准则（Pencil &amp; Paper Rule）”：
+          </p>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #c9d1d9; margin-top: 0.5rem;">
+            <li>严禁调用 <code>mouse_event</code>、<code>SendInput</code> 进行任何键鼠模拟。</li>
+            <li>严禁 DLL 注入或 <code>ReadProcessMemory</code> 内存扫描。</li>
+            <li>所有游戏事件只能通过本地官方调试日志 <code>Power.log</code> 读取。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. UI/UX 视觉系统与微标演练 -->
+    <section class="card">
+      <h2>3. 暗夜魔幻战术 HUD 视觉规范与微标模拟器</h2>
+      <p>
+        界面基调融合<strong>暗夜魔幻酒馆</strong>与<strong>现代电竞战术 HUD</strong>，通过半透明穿透磨砂毛玻璃呈现，完全不遮挡原生视线：
+      </p>
+
+      <!-- 调色板展示 -->
+      <div class="palette-row">
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #f59e0b; box-shadow: 0 0 12px var(--gold-glow);"></div>
+          <div class="color-name" style="color: #f59e0b;">传奇金 (Gold)</div>
+          <div class="color-hex">#f59e0b · 三连/升本</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #38bdf8; box-shadow: 0 0 12px var(--blue-glow);"></div>
+          <div class="color-name" style="color: #38bdf8;">战术蓝 (Blue)</div>
+          <div class="color-hex">#38bdf8 · 状态/指标</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #10b981; box-shadow: 0 0 12px var(--green-glow);"></div>
+          <div class="color-name" style="color: #10b981;">安全翠绿 (Green)</div>
+          <div class="color-hex">#10b981 · 即战力/推荐</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #ef4444; box-shadow: 0 0 12px var(--red-glow);"></div>
+          <div class="color-name" style="color: #ef4444;">暴毙红 (Red)</div>
+          <div class="color-hex">#ef4444 · 生死线/避坑</div>
+        </div>
+        <div class="color-swatch">
+          <div class="color-preview" style="background: #a855f7; box-shadow: 0 0 12px var(--purple-glow);"></div>
+          <div class="color-name" style="color: #a855f7;">魔能紫 (Purple)</div>
+          <div class="color-hex">#a855f7 · 协同/发动机</div>
+        </div>
+      </div>
+
+      <!-- 交互式微标演示舞台 -->
+      <div class="sandbox-stage">
+        <div class="minion-card-mock">
+          <!-- 悬浮微标 -->
+          <div id="demo-badge" class="hud-badge-floating badge-triple">🔥 凑齐三连 (Triple +1)</div>
+          <div class="card-title" id="demo-card-name">机械木马</div>
+          <div style="font-size: 0.75rem; color: #8b949e; margin-bottom: 1rem;">酒馆待选随从</div>
+          <div class="card-stats">
+            <span class="stat-atk" id="demo-card-atk">4</span>
+            <span class="stat-hp" id="demo-card-hp">4</span>
+          </div>
+        </div>
+
+        <div class="sandbox-controls">
+          <h3 style="margin-top: 0;">🎮 随从头顶悬浮微标（Badge）实时交互切换</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted);">
+            点击下方不同决策推荐类型，观察卡面头顶微标的悬浮呼吸动效与状态定义：
+          </p>
+
+          <div class="btn-group">
+            <button class="spec-btn active" data-type="triple">🔥 凑齐三连 (Triple) —— 金色光晕呼吸</button>
+            <button class="spec-btn" data-type="synergy">★ 核心质变 (Synergy Engine) —— 魔能紫协同</button>
+            <button class="spec-btn" data-type="tempo">🛡️ 即时保命 (Immediate Tempo) —— 翠绿护脸</button>
+            <button class="spec-btn" data-type="trap">⛔ 避坑预警 (Trap / Low Value) —— 警戒下沉</button>
+          </div>
+
+          <div class="sandbox-desc" id="badge-desc-text">
+            【传奇金色微标】场上已存在该随从 2 张或手牌有对子，购买即刻合成金色随从并发现高一本奖励卡。触发金光呼吸特效。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      TavernOracle 规范手册 · 详细文档详见 <code>docs/dev_specifications.md</code> 与 <code>AGENTS.md</code>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
