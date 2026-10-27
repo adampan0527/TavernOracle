@@ -1,0 +1,153 @@
+{
+  "turn": 10,
+  "heroCardId": "BG_HERO_102",
+  "health": 18,
+  "armor": 2,
+  "tavernTier": 5,
+  "upgradeCost": 8,
+  "isFrozen": true,
+  "bannedRaces": "Dragon, Quilboar",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.78,
+    "tieRate": 0.07,
+    "lossRate": 0.15,
+    "lethalRate": 0.01,
+    "averageDamageTaken": -6.5,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "Golden frog and frozen 2nd Titus in shop"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BGS_078",
+      "attack": 7,
+      "health": 5,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "Reborn",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG21_000_G",
+      "attack": 6,
+      "health": 6,
+      "tier": 2,
+      "race": "Beast",
+      "mechanics": "Reborn, Deathrattle",
+      "isGolden": true,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BGS_078",
+      "attack": 5,
+      "health": 3,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "Windfury",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG19_010",
+      "attack": 2,
+      "health": 10,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BG26_355",
+      "attack": 3,
+      "health": 6,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    },
+    {
+      "entityId": 106,
+      "cardId": "BG25_352",
+      "attack": 1,
+      "health": 7,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "Stealth",
+      "isGolden": false,
+      "zonePosition": 5
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG25_352",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 0
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BG25_352",
+      "cost": 3,
+      "tier": 5,
+      "race": "None",
+      "isFrozen": true
+    },
+    {
+      "entityId": 302,
+      "cardId": "BGS_078",
+      "cost": 3,
+      "tier": 4,
+      "race": "Beast",
+      "isFrozen": true
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG26_355",
+      "cost": 3,
+      "tier": 4,
+      "race": "Beast",
+      "isFrozen": true
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_006",
+      "cost": 3,
+      "tier": 5,
+      "race": "Dragon",
+      "isFrozen": true
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_007",
+      "cost": 3,
+      "tier": 4,
+      "race": "Mech",
+      "isFrozen": true
+    },
+    {
+      "entityId": 306,
+      "cardId": "BG20_008",
+      "cost": 3,
+      "tier": 3,
+      "race": "Undead",
+      "isFrozen": true
+    }
+  ]
+}

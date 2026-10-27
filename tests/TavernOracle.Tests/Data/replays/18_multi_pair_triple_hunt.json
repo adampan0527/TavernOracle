@@ -1,0 +1,145 @@
+{
+  "turn": 7,
+  "heroCardId": "BG_HERO_102",
+  "health": 26,
+  "armor": 3,
+  "tavernTier": 3,
+  "upgradeCost": 6,
+  "isFrozen": false,
+  "bannedRaces": "Dragon, Demon",
+  "gold": {
+    "available": 9,
+    "max": 9,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.52,
+    "tieRate": 0.15,
+    "lossRate": 0.33,
+    "lethalRate": 0.04,
+    "averageDamageTaken": -1.2,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "3 pairs on board, triples in tavern!"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BGS_071",
+      "attack": 3,
+      "health": 2,
+      "tier": 3,
+      "race": "Mech",
+      "mechanics": "DivineShield",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BGS_071",
+      "attack": 3,
+      "health": 2,
+      "tier": 3,
+      "race": "Mech",
+      "mechanics": "DivineShield",
+      "isGolden": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG19_010",
+      "attack": 1,
+      "health": 9,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG19_010",
+      "attack": 1,
+      "health": 9,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BGS_078",
+      "attack": 5,
+      "health": 3,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    },
+    {
+      "entityId": 106,
+      "cardId": "BGS_078",
+      "attack": 5,
+      "health": 3,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 5
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG_SPELL_COIN",
+      "cost": 1,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 0
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BGS_071",
+      "cost": 3,
+      "tier": 3,
+      "race": "Mech",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG19_010",
+      "cost": 3,
+      "tier": 3,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG20_141",
+      "cost": 3,
+      "tier": 3,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_142",
+      "cost": 3,
+      "tier": 3,
+      "race": "Demon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_143",
+      "cost": 3,
+      "tier": 2,
+      "race": "None",
+      "isFrozen": false
+    }
+  ]
+}

@@ -53,3 +53,30 @@ Verbose=true
 - **HearthDb (.NET C#)**: [https://github.com/HearthSim/HearthDb](https://github.com/HearthSim/HearthDb)
 - **LogWatcher (内置于 HDT)**: [https://github.com/HearthSim/Hearthstone-Deck-Tracker](https://github.com/HearthSim/Hearthstone-Deck-Tracker)
 - **python-hslog**: [https://github.com/HearthSim/python-hslog](https://github.com/HearthSim/python-hslog)
+
+## 5. HDT 插件实时接线与验收（2026-10-27）
+
+默认插件在 `OnUpdate` 中读取 HDT 公共 `API.Core.Game`，通过
+`IGameStateWatcher.AttachHdtGame` 同步真实招募盘面并驱动决策与 HUD。
+此输入是 HDT 从日志重建的托管对象，不读取炉石进程内存。注入离线状态机的测试不启用宿主同步。
+
+- 按已安装 HDT 1.59.4 的实际契约读取 `PlayerEntity.GetTag`、`PlayerTechLevel`、
+  `GetTurnNumber()`、`Player.Board/Hand`、`Opponent.Board`。
+- `RESOURCES_USED` 标签编号为 **25**，`PLAYER_TECH_LEVEL` 为 **1377**；
+  可用金币取资源加临时资源减已用资源，零金币必须保留，禁止按回合补出虚假金币。
+- 升本费用来自我方 `PlayerEntities` 中处于 PLAY 的 `TB_BaconShopTechUp*_Button`。
+  未找到时禁止生成升本建议。已购随从打出费用为零。
+- 商品按 `ZonePosition` 排序，横条以“从左数第 N 张”与卡名指明首选。
+  酒馆法术保留物理位置用于对齐，当前未实现法术价值评估，不作为随从推荐买入。
+- 战斗、菜单阶段清除购牌建议；数据未连接或商店未识别时显示等待提示。
+  尚无真实战力模拟结果时不展示默认先验为实测胜率。
+- HUD 根 Canvas 不得在零尺寸下裁剪子控件；所有新增控件保持 `IsHitTestVisible=false`。
+
+回归入口：`LiveHdtRecommendationTests`。先用旧代码复现零金币误判与零尺寸裁剪两个失败，
+修复后覆盖实时消费/换店、可见推荐与首选微标、阶段切换、等待提示和法术位置。
+这是宿主对象契约及 WPF 渲染验收，不能替代真实对局验收，也不能证明端到端 15ms 指标。
+
+构建且暂不替换正在运行的插件：
+`dotnet build src/TavernOracle/TavernOracle.csproj -c Release -f net472 -p:DeployToHdt=false`。
+退出 HDT 后执行 `tools/install_plugin.ps1`，将已构建 DLL 同步到安装目录和 AppData 插件目录，
+保留备份并校验哈希，然后重新启动 HDT、确认 TavernOracle 已启用。

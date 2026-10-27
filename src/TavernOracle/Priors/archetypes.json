@@ -1,0 +1,1045 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-10-26T21:45:00Z",
+  "description": "TavernOracle Battlegrounds Archetypes & Race Synergy Knowledge Graph",
+  "archetypes": [
+    {
+      "id": "Beasts_Leapfrogger",
+      "name": "Leapfrogger Beasts",
+      "nameCn": "跳蛙野兽流",
+      "primaryRace": "Beast",
+      "supportedRaces": ["Beast", "All"],
+      "description": "依靠跳蛙骑士的亡语不断转移叠加身材，搭配巨怪鹦鹉多次触发、提图斯·瑞文戴尔倍乘亡语，并在战斗中依靠复生/亡语随从滚雪球形成战力质变。",
+      "baselineTierRequirement": 4,
+      "keyMechanics": ["Deathrattle", "Reborn", "StatBuff", "BeastMultiplier"],
+      "transitionSignposts": ["BG21_000", "BG25_352", "BGS_078", "BG26_355"],
+      "coreMinions": [
+        {
+          "cardId": "BG21_000",
+          "name": "Leapfrogger",
+          "nameCn": "跳蛙骑士",
+          "tier": 2,
+          "race": "Beast",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "亡语：使一个友方野兽获得+1/+1以及此亡语。",
+          "keyMechanics": ["Deathrattle", "StatBuff"]
+        },
+        {
+          "cardId": "BG25_352",
+          "name": "Titus Rivendare",
+          "nameCn": "提图斯·瑞文戴尔",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "你的亡语额外触发一次（多个提图斯效果叠加）。",
+          "keyMechanics": ["DeathrattleMultiplier"]
+        },
+        {
+          "cardId": "FP1_031",
+          "name": "Baron Rivendare",
+          "nameCn": "瑞文戴尔男爵",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "CoreEngine",
+          "description": "你的亡语触发两次。",
+          "keyMechanics": ["DeathrattleMultiplier"]
+        },
+        {
+          "cardId": "BGS_078",
+          "name": "Monstrous Macaw",
+          "nameCn": "巨怪鹦鹉",
+          "tier": 3,
+          "race": "Beast",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "在攻击后，触发一个友方随从的亡语。",
+          "keyMechanics": ["TriggerDeathrattle", "WindfurySynergy"]
+        },
+        {
+          "cardId": "BGS_018",
+          "name": "Goldrinn, the Great Wolf",
+          "nameCn": "巨狼先祖",
+          "tier": 6,
+          "race": "Beast",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "Finisher",
+          "description": "亡语：在本场战斗的剩余时间内，你的野兽拥有+3/+3。",
+          "keyMechanics": ["Deathrattle", "AuraBuff"]
+        },
+        {
+          "cardId": "BG26_355",
+          "name": "Banana Slamma",
+          "nameCn": "香蕉大猩猩",
+          "tier": 4,
+          "race": "Beast",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "KeyEnabler",
+          "description": "在你召唤一个野兽后，使其属性值翻倍。",
+          "keyMechanics": ["StatMultiplier", "SummonSynergy"]
+        },
+        {
+          "cardId": "BG19_010",
+          "name": "Sewer Rat",
+          "nameCn": "下水道老鼠",
+          "tier": 2,
+          "race": "Beast",
+          "isCoreEngine": false,
+          "synergyWeight": 1.4,
+          "role": "SynergyUnit",
+          "description": "嘲讽，亡语：召唤一只2/3并具有嘲讽的龟。",
+          "keyMechanics": ["Taunt", "Deathrattle", "TokenSummon"]
+        },
+        {
+          "cardId": "BG26_805",
+          "name": "Humming Bird",
+          "nameCn": "苍蝇繁殖者",
+          "tier": 2,
+          "race": "Beast",
+          "isCoreEngine": false,
+          "synergyWeight": 1.3,
+          "role": "SynergyUnit",
+          "description": "你的其他野兽拥有+2攻击力。",
+          "keyMechanics": ["AttackAura"]
+        }
+      ]
+    },
+    {
+      "id": "Mechs_Deflecto",
+      "name": "Deflect-o-Bot Mechs",
+      "nameCn": "偏折重置机械流",
+      "primaryRace": "Mech",
+      "supportedRaces": ["Mech", "All"],
+      "description": "以偏折机器人为高频输出核心，利用圣盾与机械召唤物不断重置圣盾，辅以吵吵模组贴膜与钢铁武道家/极恶魔能火炮实现身材永续增长。",
+      "baselineTierRequirement": 3,
+      "keyMechanics": ["DivineShield", "Magnetic", "SummonReset", "EndTurnScale"],
+      "transitionSignposts": ["BGS_071", "BG_BOT_911", "BG26_160"],
+      "coreMinions": [
+        {
+          "cardId": "BGS_071",
+          "name": "Deflect-o-Bot",
+          "nameCn": "偏折机器人",
+          "tier": 3,
+          "race": "Mech",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "圣盾。在战斗中每当你召唤一个机械，便获得+2攻击力并重新获得圣盾。",
+          "keyMechanics": ["DivineShield", "ResetShield"]
+        },
+        {
+          "cardId": "BG_BOT_911",
+          "name": "Annoy-o-Module",
+          "nameCn": "吵吵模组",
+          "tier": 4,
+          "race": "Mech",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "KeyEnabler",
+          "description": "磁力，嘲讽，圣盾。",
+          "keyMechanics": ["Magnetic", "Taunt", "DivineShield"]
+        },
+        {
+          "cardId": "GVG_100",
+          "name": "Iron Sensei",
+          "nameCn": "钢铁加鲁鲁",
+          "tier": 3,
+          "race": "Mech",
+          "isCoreEngine": true,
+          "synergyWeight": 1.9,
+          "role": "Engine",
+          "description": "在你的回合结束时，使另一个友方机械获得+2/+2。",
+          "keyMechanics": ["EndTurnScale"]
+        },
+        {
+          "cardId": "BG26_160",
+          "name": "Scrap Scraper",
+          "nameCn": "废铁残械",
+          "tier": 4,
+          "race": "Mech",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "KeyEnabler",
+          "description": "复仇(4)：获得一张随机磁力随从牌。",
+          "keyMechanics": ["Avenge", "MagneticResource"]
+        },
+        {
+          "cardId": "BG26_154",
+          "name": "Utility Drone",
+          "nameCn": "极恶魔能火炮",
+          "tier": 4,
+          "race": "Mech",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "Finisher",
+          "description": "在你的回合结束时，你的随从每拥有一个磁力效果，便使其获得+1/+1。",
+          "keyMechanics": ["EndTurnScale", "MagneticSynergy"]
+        },
+        {
+          "cardId": "BG26_ICC_029",
+          "name": "Drakkari Enchanter",
+          "nameCn": "达卡莱附魔师",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": false,
+          "synergyWeight": 1.7,
+          "role": "KeyEnabler",
+          "description": "你的回合结束效果触发两次。",
+          "keyMechanics": ["EndTurnMultiplier"]
+        },
+        {
+          "cardId": "BGS_043",
+          "name": "Replicating Menace",
+          "nameCn": "量产型恐吓机",
+          "tier": 3,
+          "race": "Mech",
+          "isCoreEngine": false,
+          "synergyWeight": 1.6,
+          "role": "SynergyUnit",
+          "description": "磁力，亡语：召唤三个1/1的微型机器人。",
+          "keyMechanics": ["Magnetic", "Deathrattle", "TokenSummon"]
+        }
+      ]
+    },
+    {
+      "id": "Murlocs_Handbuff",
+      "name": "Handbuff & Poison Murlocs",
+      "nameCn": "手牌剧毒鱼人流",
+      "primaryRace": "Murloc",
+      "supportedRaces": ["Murloc", "All"],
+      "description": "依靠铜须战吼滚雪球与算盘鱼在手牌无限成长身材，配合低音提琴鱼人与合唱鱼人打出终局爆发，兼具剧毒斩杀与巨额白值。",
+      "baselineTierRequirement": 4,
+      "keyMechanics": ["BattlecryMultiplier", "Handbuff", "Venomous", "SummonFromHand"],
+      "transitionSignposts": ["BG_LOE_077", "BG26_354", "BG26_350"],
+      "coreMinions": [
+        {
+          "cardId": "BG_LOE_077",
+          "name": "Brann Bronzebeard",
+          "nameCn": "布莱恩·铜须",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "你的战吼额外触发一次。",
+          "keyMechanics": ["BattlecryMultiplier"]
+        },
+        {
+          "cardId": "LOE_077",
+          "name": "Brann Bronzebeard (Classic)",
+          "nameCn": "布莱恩·铜须 (经典)",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "你的战吼额外触发一次。",
+          "keyMechanics": ["BattlecryMultiplier"]
+        },
+        {
+          "cardId": "BG26_354",
+          "name": "Bream Counter",
+          "nameCn": "算盘鱼",
+          "tier": 3,
+          "race": "Murloc",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "CoreEngine",
+          "description": "当此牌在你的手牌中时，在你使用一张鱼人牌后，获得+3/+3。",
+          "keyMechanics": ["Handbuff", "Growth"]
+        },
+        {
+          "cardId": "BGS_030",
+          "name": "King Bagurgle",
+          "nameCn": "贝壳元素/拜戈格尔",
+          "tier": 5,
+          "race": "Murloc",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "KeyEnabler",
+          "description": "战吼，亡语：使你的其他鱼人获得+2/+2。",
+          "keyMechanics": ["Battlecry", "Deathrattle", "TeamBuff"]
+        },
+        {
+          "cardId": "BG26_357",
+          "name": "Choral Mrrrglr",
+          "nameCn": "合唱鱼人",
+          "tier": 6,
+          "race": "Murloc",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "Finisher",
+          "description": "战斗开始时：获得你手牌中所有随从的属性值。",
+          "keyMechanics": ["HandbuffSynergy", "StartOfCombat"]
+        },
+        {
+          "cardId": "BG26_350",
+          "name": "Bassgill",
+          "nameCn": "低音提琴鱼人",
+          "tier": 4,
+          "race": "Murloc",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "亡语：从你的手牌中召唤生命值最高的随从，仅限本场战斗。",
+          "keyMechanics": ["Deathrattle", "SummonFromHand"]
+        },
+        {
+          "cardId": "UNG_073",
+          "name": "Primalfin Lookout",
+          "nameCn": "原初先知",
+          "tier": 4,
+          "race": "Murloc",
+          "isCoreEngine": false,
+          "synergyWeight": 1.8,
+          "role": "KeyEnabler",
+          "description": "战吼：如果你控制另一个鱼人，则发现一张鱼人牌。",
+          "keyMechanics": ["Battlecry", "DiscoverResource"]
+        }
+      ]
+    },
+    {
+      "id": "Undead_Reborn",
+      "name": "Reborn & Swarm Undead",
+      "nameCn": "亡灵复生流",
+      "primaryRace": "Undead",
+      "supportedRaces": ["Undead", "All"],
+      "description": "依托全队亡灵攻击力永久累加与永恒骑士身板传承，结合亡语者姐妹和提图斯多重亡语，在持续复生复仇中撕碎敌阵。",
+      "baselineTierRequirement": 4,
+      "keyMechanics": ["Reborn", "Deathrattle", "UndeadArmyBuff", "AvengeScale"],
+      "transitionSignposts": ["BG25_008", "BG25_020", "BG25_009"],
+      "coreMinions": [
+        {
+          "cardId": "BG25_008",
+          "name": "Eternal Knight",
+          "nameCn": "永恒骑士",
+          "tier": 2,
+          "race": "Undead",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "在本局对战中，每有一个友方永恒骑士死亡，便拥有+1/+1（无论本牌在何处）。",
+          "keyMechanics": ["PersistentGrowth", "KnightSynergy"]
+        },
+        {
+          "cardId": "BG25_020",
+          "name": "Sister Deathwhisper",
+          "nameCn": "亡语者姐妹",
+          "tier": 6,
+          "race": "Undead",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "在一个友方随从复生后，使你的亡灵永久获得+1/+3。",
+          "keyMechanics": ["RebornSynergy", "PermanentBuff"]
+        },
+        {
+          "cardId": "BG25_009",
+          "name": "Eternal Summoner",
+          "nameCn": "永恒召唤者",
+          "tier": 6,
+          "race": "Undead",
+          "isCoreEngine": true,
+          "synergyWeight": 2.4,
+          "role": "Finisher",
+          "description": "复生。亡语：召唤一个永恒骑士。",
+          "keyMechanics": ["Reborn", "Deathrattle", "KnightSummon"]
+        },
+        {
+          "cardId": "BG25_352",
+          "name": "Titus Rivendare",
+          "nameCn": "瑞文戴尔",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "CoreEngine",
+          "description": "你的亡语额外触发一次。",
+          "keyMechanics": ["DeathrattleMultiplier"]
+        },
+        {
+          "cardId": "BG26_ICC_029",
+          "name": "Drakkari Enchanter",
+          "nameCn": "达卡莱附魔师",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": false,
+          "synergyWeight": 1.7,
+          "role": "KeyEnabler",
+          "description": "你的回合结束效果触发两次。",
+          "keyMechanics": ["EndTurnMultiplier"]
+        },
+        {
+          "cardId": "BG27_014",
+          "name": "Grave Gobbler",
+          "nameCn": "墓地捣蛋鬼",
+          "tier": 3,
+          "race": "Undead",
+          "isCoreEngine": false,
+          "synergyWeight": 1.5,
+          "role": "SynergyUnit",
+          "description": "在你的回合开始时，消灭一个亡灵以获得金色随从。",
+          "keyMechanics": ["Sacrifice", "ResourceGeneration"]
+        }
+      ]
+    },
+    {
+      "id": "Pirates_APM",
+      "name": "APM Economy Pirates",
+      "nameCn": "电表倒转海盗流",
+      "primaryRace": "Pirate",
+      "supportedRaces": ["Pirate", "All"],
+      "description": "以霍格船长/舰队上将特瑟斯构筑无限铸币电表倒转，高频买卖海盗触发佩姬与长角海盗群体身材剧增，操作手速决定战力上限。",
+      "baselineTierRequirement": 5,
+      "keyMechanics": ["EconomyEngine", "APMScale", "BuySellSynergy", "GoldRefund"],
+      "transitionSignposts": ["BGS_046", "BG21_016", "BG26_766"],
+      "coreMinions": [
+        {
+          "cardId": "BGS_046",
+          "name": "Cap'n Hoggarr",
+          "nameCn": "霍格船长",
+          "tier": 5,
+          "race": "Pirate",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "在你购买一个海盗后，获得1枚铸币。",
+          "keyMechanics": ["EconomyEngine", "GoldRefund"]
+        },
+        {
+          "cardId": "BG21_016",
+          "name": "Peggy Brittlebone",
+          "nameCn": "佩姬·布里特尔伯恩",
+          "tier": 4,
+          "race": "Pirate",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "在有一张牌置入你的手牌后，使另一个友方海盗获得+1/+1。",
+          "keyMechanics": ["HandCardTrigger", "PirateBuff"]
+        },
+        {
+          "cardId": "BG26_766",
+          "name": "Fleet Admiral Tethys",
+          "nameCn": "舰队上将特瑟斯",
+          "tier": 6,
+          "race": "Pirate",
+          "isCoreEngine": true,
+          "synergyWeight": 2.4,
+          "role": "CoreEngine",
+          "description": "在你花掉8枚铸币后，随机获取一张海盗牌。",
+          "keyMechanics": ["SpendGoldResource", "PirateGenerator"]
+        },
+        {
+          "cardId": "BG26_814",
+          "name": "Lovesick Balladist",
+          "nameCn": "战意长角海盗",
+          "tier": 4,
+          "race": "Pirate",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "KeyEnabler",
+          "description": "战吼：在本回合中你每购买过一个海盗，使一个海盗获得+1生命值。",
+          "keyMechanics": ["Battlecry", "APMScale"]
+        },
+        {
+          "cardId": "BGS_048",
+          "name": "Southsea Strongarm",
+          "nameCn": "南海要犯",
+          "tier": 5,
+          "race": "Pirate",
+          "isCoreEngine": false,
+          "synergyWeight": 1.6,
+          "role": "SynergyUnit",
+          "description": "战吼：在本回合中你每购买过一个海盗，便使一个友方海盗获得+1/+1。",
+          "keyMechanics": ["Battlecry", "Growth"]
+        },
+        {
+          "cardId": "BGS_075",
+          "name": "Dread Admiral Eliza",
+          "nameCn": "撕心狼人/伊利斯",
+          "tier": 6,
+          "race": "Pirate",
+          "isCoreEngine": false,
+          "synergyWeight": 1.7,
+          "role": "Finisher",
+          "description": "每当一个友方海盗攻击时，使你的所有随从获得+2/+1。",
+          "keyMechanics": ["AttackBuff", "TeamAura"]
+        }
+      ]
+    },
+    {
+      "id": "Elementals_Nomi",
+      "name": "Nomi & Master Elementals",
+      "nameCn": "诺米现境元素流",
+      "primaryRace": "Elemental",
+      "supportedRaces": ["Elemental", "All"],
+      "description": "前期提速升本寻找诺米与摇滚岩石，依靠源源不断买入并打出元素牌刷大酒馆白值，配合狂风元素圣盾狂战与现境大师承接增益。",
+      "baselineTierRequirement": 4,
+      "keyMechanics": ["ShopBuff", "PlayElementalSynergy", "WindfuryCleave", "StatGrowth"],
+      "transitionSignposts": ["BGS_104", "BG21_036", "BAR_074"],
+      "coreMinions": [
+        {
+          "cardId": "BGS_104",
+          "name": "Nomi, Kitchen Nightmare",
+          "nameCn": "诺米",
+          "tier": 5,
+          "race": "Elemental",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "在你使用一张元素牌后，酒馆中的元素在本局对战中拥有+1/+1。",
+          "keyMechanics": ["ShopBuff", "PermanentScaling"]
+        },
+        {
+          "cardId": "BAR_074",
+          "name": "Wildfire Elemental",
+          "nameCn": "狂风元素",
+          "tier": 4,
+          "race": "Elemental",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "在攻击并消灭一个随从后，对相邻随从造成过量伤害。",
+          "keyMechanics": ["OverkillCleave", "CombatCarry"]
+        },
+        {
+          "cardId": "BGS_126",
+          "name": "Wildfire Elemental (Classic)",
+          "nameCn": "狂风元素 (经典)",
+          "tier": 4,
+          "race": "Elemental",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "CoreEngine",
+          "description": "消灭随从后对相邻随从造成过量伤害。",
+          "keyMechanics": ["OverkillCleave"]
+        },
+        {
+          "cardId": "BG21_036",
+          "name": "Master of Realities",
+          "nameCn": "现境大师",
+          "tier": 5,
+          "race": "Elemental",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "CoreEngine",
+          "description": "嘲讽。在有友方随从获得属性值后，自身获得+1/+1。",
+          "keyMechanics": ["Taunt", "GrowthObserver"]
+        },
+        {
+          "cardId": "BG26_150",
+          "name": "Rock Rock",
+          "nameCn": "摇滚岩石",
+          "tier": 6,
+          "race": "Elemental",
+          "isCoreEngine": true,
+          "synergyWeight": 2.4,
+          "role": "Finisher",
+          "description": "在你使用一张元素牌后，使你的其他随从获得+2/+2。",
+          "keyMechanics": ["TeamBuff", "ElementalPlaySynergy"]
+        },
+        {
+          "cardId": "BGS_028",
+          "name": "Crackling Cyclone",
+          "nameCn": "爆裂飓风",
+          "tier": 3,
+          "race": "Elemental",
+          "isCoreEngine": false,
+          "synergyWeight": 1.7,
+          "role": "SynergyUnit",
+          "description": "圣盾，风怒。",
+          "keyMechanics": ["DivineShield", "Windfury"]
+        },
+        {
+          "cardId": "BGS_127",
+          "name": "Molten Rock",
+          "nameCn": "熔岩潜伏者",
+          "tier": 2,
+          "race": "Elemental",
+          "isCoreEngine": false,
+          "synergyWeight": 1.4,
+          "role": "SynergyUnit",
+          "description": "嘲讽。在你使用一张元素牌后，获得+1生命值。",
+          "keyMechanics": ["Taunt", "HealthGain"]
+        }
+      ]
+    },
+    {
+      "id": "Dragons_Kalecgos",
+      "name": "Kalecgos Battlecry Dragons",
+      "nameCn": "卡雷战吼巨龙流",
+      "primaryRace": "Dragon",
+      "supportedRaces": ["Dragon", "All"],
+      "description": "以卡雷苟斯为核心，利用铜须高频刷出战吼牌使全场巨龙属性值剧增，配合泰蕾苟萨永久保留战斗增益与诗心巨龙保持相邻特效。",
+      "baselineTierRequirement": 5,
+      "keyMechanics": ["BattlecryBuff", "CombatBuffPreserve", "PoetAdjacency", "DivineShield"],
+      "transitionSignposts": ["BGS_045", "BG21_015", "BG29_811"],
+      "coreMinions": [
+        {
+          "cardId": "BGS_045",
+          "name": "Kalecgos, Arcane Aspect",
+          "nameCn": "卡雷苟斯",
+          "tier": 6,
+          "race": "Dragon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "在你触发一个战吼后，使你的所有龙获得+1/+1。",
+          "keyMechanics": ["BattlecrySynergy", "TeamBuff"]
+        },
+        {
+          "cardId": "BG21_015",
+          "name": "Tarecgosa",
+          "nameCn": "泰蕾苟萨",
+          "tier": 3,
+          "race": "Dragon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "本随从可永久保留战斗阶段获得的强化效果。",
+          "keyMechanics": ["PermanentCombatBuff", "SynergyCarrier"]
+        },
+        {
+          "cardId": "BG29_811",
+          "name": "Persistent Poet",
+          "nameCn": "诗心巨龙",
+          "tier": 4,
+          "race": "Dragon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "CoreEngine",
+          "description": "圣盾。相邻随从可永久保留战斗阶段获得的强化效果。",
+          "keyMechanics": ["DivineShield", "AdjacencyPreservation"]
+        },
+        {
+          "cardId": "BG24_500",
+          "name": "Amber Guardian",
+          "nameCn": "琥珀卫士",
+          "tier": 3,
+          "race": "Dragon",
+          "isCoreEngine": false,
+          "synergyWeight": 1.7,
+          "role": "KeyEnabler",
+          "description": "战斗开始时：使另一条友方的龙获得+3/+3和圣盾。",
+          "keyMechanics": ["StartOfCombat", "DivineShieldBuff"]
+        },
+        {
+          "cardId": "BG_LOE_077",
+          "name": "Brann Bronzebeard",
+          "nameCn": "布莱恩·铜须",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.4,
+          "role": "KeyEnabler",
+          "description": "你的战吼额外触发一次。",
+          "keyMechanics": ["BattlecryMultiplier"]
+        },
+        {
+          "cardId": "BG23_018",
+          "name": "Nether Drake",
+          "nameCn": "虚空幼龙",
+          "tier": 2,
+          "race": "Dragon",
+          "isCoreEngine": false,
+          "synergyWeight": 1.4,
+          "role": "SynergyUnit",
+          "description": "在你的回合结束时，使你的所有龙获得+1攻击力。",
+          "keyMechanics": ["EndTurnAttackAura"]
+        }
+      ]
+    },
+    {
+      "id": "Demons_SelfDamage",
+      "name": "Self-Damage & Juggler Demons",
+      "nameCn": "恶魔自残杂耍流",
+      "primaryRace": "Demon",
+      "supportedRaces": ["Demon", "All"],
+      "description": "前期通过愤怒编织者扣血强力滚身材，中期转入灵魂收割者无损自残或灵魂杂耍者高频导弹压制，终局通过提克迪奥斯与乌祖尔吃酒馆达成终极膨胀。",
+      "baselineTierRequirement": 3,
+      "keyMechanics": ["SelfDamageBuff", "EatShopMinions", "ArtilleryBarrage", "DemonGrowth"],
+      "transitionSignposts": ["BGS_004", "BGS_002", "BG26_523"],
+      "coreMinions": [
+        {
+          "cardId": "BGS_004",
+          "name": "Wrath Weaver",
+          "nameCn": "愤怒编织者",
+          "tier": 1,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "在你使用一张恶魔牌后，对你的英雄造成1点伤害并获得+2/+1。",
+          "keyMechanics": ["SelfDamage", "RapidGrowth"]
+        },
+        {
+          "cardId": "BGS_002",
+          "name": "Soul Juggler",
+          "nameCn": "灵魂杂耍者",
+          "tier": 3,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "CoreEngine",
+          "description": "在一个友方恶魔死亡后，对一个敌方随从造成3点伤害。",
+          "keyMechanics": ["DeathrattleArtillery", "BacklineDamage"]
+        },
+        {
+          "cardId": "BG26_523",
+          "name": "Tichondrius",
+          "nameCn": "提克迪奥斯",
+          "tier": 5,
+          "race": "Demon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.4,
+          "role": "CoreEngine",
+          "description": "在你的英雄受到伤害后，使你的其他恶魔获得+1/+1。",
+          "keyMechanics": ["DamageTrigger", "TeamBuff"]
+        },
+        {
+          "cardId": "BG21_004",
+          "name": "Insatiable Ur'zul",
+          "nameCn": "贪食的乌祖尔",
+          "tier": 5,
+          "race": "Demon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "KeyEnabler",
+          "description": "嘲讽。在你使用一张恶魔牌后，吞食酒馆中的一个随从以获得其属性值。",
+          "keyMechanics": ["EatShop", "TauntGrowth"]
+        },
+        {
+          "cardId": "BG21_005",
+          "name": "Famished Felbat",
+          "nameCn": "饥饿的邪能蝙蝠",
+          "tier": 6,
+          "race": "Demon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "Finisher",
+          "description": "在你的回合结束时，你的每个恶魔吞食酒馆中的一个随从以获得其属性值。",
+          "keyMechanics": ["EndTurnEatShop", "TeamScaling"]
+        },
+        {
+          "cardId": "BG26_ETC_401",
+          "name": "Rewinder",
+          "nameCn": "灵魂倒流者",
+          "tier": 2,
+          "race": "Demon",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "CoreEngine",
+          "description": "在你的英雄受到伤害后，倒流该伤害并使本随从获得+1生命值。",
+          "keyMechanics": ["DamageImmunity", "SelfDamageCounter"]
+        },
+        {
+          "cardId": "BGS_019",
+          "name": "Mal'Ganis",
+          "nameCn": "玛尔加尼斯",
+          "tier": 5,
+          "race": "Demon",
+          "isCoreEngine": false,
+          "synergyWeight": 1.7,
+          "role": "KeyEnabler",
+          "description": "你的其他恶魔拥有+2/+2。你的英雄获得免疫。",
+          "keyMechanics": ["Immune", "AuraBuff"]
+        }
+      ]
+    },
+    {
+      "id": "Naga_Spellcraft",
+      "name": "Spellcraft Synergy Naga",
+      "nameCn": "纳迦法术塑造流",
+      "primaryRace": "Naga",
+      "supportedRaces": ["Naga", "All"],
+      "description": "以塑造法术为发动机，深海钓客提供潜行保核，潮汐女士阿茜萨与照料者在法术倾泻时全场激增白值，熔岩潜伏者持久化关键圣盾与风怒。",
+      "baselineTierRequirement": 4,
+      "keyMechanics": ["Spellcraft", "CastSpellsScale", "PermanentSpellBuff", "CombatCarry"],
+      "transitionSignposts": ["BG23_004", "BG23_318", "BG23_003"],
+      "coreMinions": [
+        {
+          "cardId": "BG23_004",
+          "name": "Deep-Sea Angler",
+          "nameCn": "深海钓客",
+          "tier": 1,
+          "race": "Naga",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "CoreEngine",
+          "description": "塑造法术：直到下个回合，使一个随从获得+2生命值和嘲讽。",
+          "keyMechanics": ["Spellcraft", "TauntBuff"]
+        },
+        {
+          "cardId": "BG23_318",
+          "name": "Lady Athissa",
+          "nameCn": "潮汐女士阿茜萨",
+          "tier": 6,
+          "race": "Naga",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "在你施放一个法术后，使四只友方纳迦获得+1/+1。",
+          "keyMechanics": ["SpellTrigger", "TeamBuff"]
+        },
+        {
+          "cardId": "BG23_009",
+          "name": "Lava Lurker",
+          "nameCn": "熔岩潜伏者",
+          "tier": 2,
+          "race": "Naga",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "KeyEnabler",
+          "description": "每回合对本随从施放的第一个塑造法术永久有效。",
+          "keyMechanics": ["PermanentSpellcraft", "StatCarry"]
+        },
+        {
+          "cardId": "BG23_003",
+          "name": "Critter Wrangler",
+          "nameCn": "照料者",
+          "tier": 5,
+          "race": "Naga",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "每当你对一个随从施放法术时，使其获得+1/+2。",
+          "keyMechanics": ["TargetSpellBuff"]
+        },
+        {
+          "cardId": "BG23_012",
+          "name": "Corrupted Myrmidon",
+          "nameCn": "异教徒斯瑟斯",
+          "tier": 5,
+          "race": "Naga",
+          "isCoreEngine": true,
+          "synergyWeight": 2.0,
+          "role": "Finisher",
+          "description": "战斗开始时：属性值翻倍。",
+          "keyMechanics": ["StartOfCombat", "StatDoubling"]
+        },
+        {
+          "cardId": "BG23_007",
+          "name": "Glowscale",
+          "nameCn": "闪鳞纳迦",
+          "tier": 4,
+          "race": "Naga",
+          "isCoreEngine": false,
+          "synergyWeight": 1.9,
+          "role": "KeyEnabler",
+          "description": "嘲讽。塑造法术：直到下个回合，使一个随从获得圣盾。",
+          "keyMechanics": ["Spellcraft", "DivineShieldGrant"]
+        }
+      ]
+    },
+    {
+      "id": "Quilboar_BloodGem",
+      "name": "Blood Gem Quilboar",
+      "nameCn": "鲜血宝石野猪人流",
+      "primaryRace": "Quilboar",
+      "supportedRaces": ["Quilboar", "All"],
+      "description": "通过野猪预言者与扛旗产出巨量鲜血宝石，结合达卡莱附魔师与查尔加在回合结束时全队灌注宝石，刺背骑士提供圣盾风怒终结战局。",
+      "baselineTierRequirement": 4,
+      "keyMechanics": ["BloodGemBuff", "EndTurnTransfer", "GemGeneration", "DivineShieldWindfury"],
+      "transitionSignposts": ["BG20_203", "BG20_204", "BG20_303"],
+      "coreMinions": [
+        {
+          "cardId": "BG20_203",
+          "name": "Prophet of the Boar",
+          "nameCn": "野猪预言者",
+          "tier": 2,
+          "race": "Quilboar",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "CoreEngine",
+          "description": "在每回合中，在你使用一张野猪人牌后，获得一张鲜血宝石。",
+          "keyMechanics": ["GemGeneration"]
+        },
+        {
+          "cardId": "BG20_204",
+          "name": "Bristleback Knight",
+          "nameCn": "刺背骑士",
+          "tier": 5,
+          "race": "Quilboar",
+          "isCoreEngine": true,
+          "synergyWeight": 2.2,
+          "role": "CoreEngine",
+          "description": "风怒，圣盾。超杀：重新获得圣盾。",
+          "keyMechanics": ["Windfury", "DivineShield", "OverkillReset"]
+        },
+        {
+          "cardId": "BG20_303",
+          "name": "Charlga",
+          "nameCn": "查尔加",
+          "tier": 6,
+          "race": "Quilboar",
+          "isCoreEngine": true,
+          "synergyWeight": 2.5,
+          "role": "CoreEngine",
+          "description": "在你的回合结束时，对你的所有随从各使用一张鲜血宝石。",
+          "keyMechanics": ["EndTurnAllGem", "TeamBuff"]
+        },
+        {
+          "cardId": "BG26_ICC_029",
+          "name": "Drakkari Enchanter",
+          "nameCn": "达卡莱附魔师",
+          "tier": 5,
+          "race": "None",
+          "isCoreEngine": true,
+          "synergyWeight": 2.3,
+          "role": "KeyEnabler",
+          "description": "你的回合结束效果触发两次。",
+          "keyMechanics": ["EndTurnMultiplier"]
+        },
+        {
+          "cardId": "BG20_201",
+          "name": "Bannerboar",
+          "nameCn": "扛旗野猪人",
+          "tier": 3,
+          "race": "Quilboar",
+          "isCoreEngine": false,
+          "synergyWeight": 1.8,
+          "role": "KeyEnabler",
+          "description": "在你的回合结束时，对相邻的野猪人各使用一张鲜血宝石。",
+          "keyMechanics": ["EndTurnAdjacentGem"]
+        },
+        {
+          "cardId": "BG26_531",
+          "name": "Bongo Bopper",
+          "nameCn": "刺头打击者",
+          "tier": 5,
+          "race": "Quilboar",
+          "isCoreEngine": true,
+          "synergyWeight": 2.1,
+          "role": "CoreEngine",
+          "description": "在你的回合结束时，获得两张鲜血宝石，并对本随从使用两张鲜血宝石。",
+          "keyMechanics": ["EndTurnSelfGem"]
+        },
+        {
+          "cardId": "BG20_103",
+          "name": "Bristleback Brute",
+          "nameCn": "刺背蛮兵",
+          "tier": 3,
+          "race": "Quilboar",
+          "isCoreEngine": false,
+          "synergyWeight": 1.5,
+          "role": "SynergyUnit",
+          "description": "在每回合中对本随从使用的第一张鲜血宝石获得额外+2/+2。",
+          "keyMechanics": ["GemBonus"]
+        }
+      ]
+    }
+  ],
+  "synergyPairs": [
+    {
+      "cardIdA": "BG21_000",
+      "cardIdB": "BG25_352",
+      "synergyScore": 2.5,
+      "reason": "跳蛙骑士与提图斯：跳蛙亡语翻倍传递，指数级身材裂变"
+    },
+    {
+      "cardIdA": "BG21_000",
+      "cardIdB": "BGS_078",
+      "synergyScore": 2.3,
+      "reason": "巨怪鹦鹉与跳蛙骑士：攻击即刻触发跳蛙亡语，提前滚雪球"
+    },
+    {
+      "cardIdA": "BGS_078",
+      "cardIdB": "BG25_352",
+      "synergyScore": 2.4,
+      "reason": "鹦鹉攻击触发亡语时被提图斯翻倍，达成极速爆发"
+    },
+    {
+      "cardIdA": "BGS_071",
+      "cardIdB": "BG_BOT_911",
+      "synergyScore": 2.2,
+      "reason": "吵吵模组直接为偏折贴圣盾嘲讽，提升首轮生存与复位保护"
+    },
+    {
+      "cardIdA": "BGS_071",
+      "cardIdB": "BGS_043",
+      "synergyScore": 2.0,
+      "reason": "量产型恐吓机提供3次亡语召唤，多次刷新偏折圣盾"
+    },
+    {
+      "cardIdA": "BG_LOE_077",
+      "cardIdB": "BG26_354",
+      "synergyScore": 2.4,
+      "reason": "铜须双倍触发战吼快速消耗手牌并触发算盘鱼双倍成长"
+    },
+    {
+      "cardIdA": "BG26_350",
+      "cardIdB": "BG26_354",
+      "synergyScore": 2.3,
+      "reason": "低音提琴鱼人亡语拉出手牌超大身材算盘鱼瞬间逆转局势"
+    },
+    {
+      "cardIdA": "BG25_008",
+      "cardIdB": "BG25_009",
+      "synergyScore": 2.4,
+      "reason": "永恒召唤者亡语召唤永恒骑士，无限继承全局死亡层数"
+    },
+    {
+      "cardIdA": "BG25_020",
+      "cardIdB": "BG25_009",
+      "synergyScore": 2.5,
+      "reason": "永恒召唤者复生触发亡语者姐妹全体亡灵永久+1/+3"
+    },
+    {
+      "cardIdA": "BGS_046",
+      "cardIdB": "BG21_016",
+      "synergyScore": 2.4,
+      "reason": "霍格返还铸币实现电表倒转，买入海盗置入手牌触发佩姬群体膨胀"
+    },
+    {
+      "cardIdA": "BGS_104",
+      "cardIdB": "BG21_036",
+      "synergyScore": 2.3,
+      "reason": "诺米增益酒馆元素打出后，现境大师全场捕获属性成长自身狂涨"
+    },
+    {
+      "cardIdA": "BGS_045",
+      "cardIdB": "BG_LOE_077",
+      "synergyScore": 2.5,
+      "reason": "铜须配合卡雷苟斯：每次战吼双倍触发卡雷全体巨龙Buff"
+    },
+    {
+      "cardIdA": "BG21_015",
+      "cardIdB": "BG29_811",
+      "synergyScore": 2.4,
+      "reason": "诗心巨龙配合泰蕾苟萨与邻近龙，全场战斗临时Buff变永久"
+    },
+    {
+      "cardIdA": "BGS_004",
+      "cardIdB": "BG26_ETC_401",
+      "synergyScore": 2.3,
+      "reason": "灵魂倒流者抹平愤怒编织者自残血量，实现无损刷身材"
+    },
+    {
+      "cardIdA": "BG26_523",
+      "cardIdB": "BGS_004",
+      "synergyScore": 2.4,
+      "reason": "编织者自残触发提克迪奥斯全体恶魔+1/+1群体狂增"
+    },
+    {
+      "cardIdA": "BG23_318",
+      "cardIdB": "BG23_003",
+      "synergyScore": 2.3,
+      "reason": "法术倾泻同时触发阿茜萨四目标增益与照料者目标增益"
+    },
+    {
+      "cardIdA": "BG20_303",
+      "cardIdB": "BG26_ICC_029",
+      "synergyScore": 2.5,
+      "reason": "达卡莱附魔师令查尔加回合结束效果触发两次，全场双倍宝石"
+    }
+  ]
+}

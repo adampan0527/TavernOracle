@@ -1,0 +1,185 @@
+{
+  "turn": 10,
+  "heroCardId": "BG_HERO_114",
+  "health": 20,
+  "armor": 0,
+  "tavernTier": 5,
+  "upgradeCost": 8,
+  "isFrozen": false,
+  "bannedRaces": "Mech, Demon",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.62,
+    "tieRate": 0.1,
+    "lossRate": 0.28,
+    "lethalRate": 0.03,
+    "averageDamageTaken": -3.5,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "APM Murlocs: Hand buffing and summon engine"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BG_LOE_077",
+      "attack": 2,
+      "health": 4,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG26_354",
+      "attack": 20,
+      "health": 22,
+      "tier": 4,
+      "race": "Murloc",
+      "mechanics": "Venomous",
+      "isGolden": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG26_357",
+      "attack": 30,
+      "health": 30,
+      "tier": 5,
+      "race": "Murloc",
+      "mechanics": "Taunt",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG26_350",
+      "attack": 16,
+      "health": 18,
+      "tier": 4,
+      "race": "Murloc",
+      "mechanics": "Deathrattle",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "UNG_073",
+      "attack": 14,
+      "health": 14,
+      "tier": 4,
+      "race": "Murloc",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    },
+    {
+      "entityId": 106,
+      "cardId": "BG_MUR_BAGURGLE",
+      "attack": 12,
+      "health": 12,
+      "tier": 5,
+      "race": "Murloc",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 5
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG_MUR_GIANT_HAND",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_MUR_BATTLECRY_1",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 203,
+      "cardId": "BG_MUR_BATTLECRY_2",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 204,
+      "cardId": "BG_SPELL_DISCOVER",
+      "cost": 2,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 205,
+      "cardId": "BG_SPELL_STATS",
+      "cost": 1,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 4
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "UNG_073",
+      "cost": 3,
+      "tier": 4,
+      "race": "Murloc",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG26_354",
+      "cost": 3,
+      "tier": 4,
+      "race": "Murloc",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG20_111",
+      "cost": 3,
+      "tier": 5,
+      "race": "None",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_112",
+      "cost": 3,
+      "tier": 5,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_113",
+      "cost": 3,
+      "tier": 4,
+      "race": "Dragon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 306,
+      "cardId": "BG20_114",
+      "cost": 3,
+      "tier": 3,
+      "race": "Elemental",
+      "isFrozen": false
+    }
+  ]
+}

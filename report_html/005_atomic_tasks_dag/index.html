@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,">
+  <title>005_atomic_tasks_dag - 方案 A 全开发流程原子任务分解与依赖有向图</title>
+  <link rel="stylesheet" href="lib/katex/katex.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="lib/katex/katex.min.js"></script>
+  <script defer src="lib/katex/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="tag">敏捷工程规划 · REPORT 005</div>
+      <h1>方案 A (HDT 插件) 全流程原子任务有向图 (DAG)</h1>
+      <p class="subtitle">将 TavernOracle 拆解为 23 个相互正交、不可拆分的原子任务单元，构建明确的前置依赖拓扑与开工状态判定</p>
+    </header>
+
+    <!-- 1. 拆解原则与核心指标卡片 -->
+    <section class="card">
+      <h2>1. 原子任务拆解原则与工程拓扑</h2>
+      <p>
+        遵循<strong>高内聚、低耦合、正交不可拆分</strong>的设计原则，全项目划分为 23 个原子任务。每个任务均拥有确定的前置输入、输出产物和客观验收标准：
+      </p>
+
+      <div class="grid-3">
+        <div class="box-item">
+          <div class="step-num">Metric 01 · 任务规模</div>
+          <div class="step-title" style="color: #38bdf8;">23 个正交原子任务</div>
+          <div class="step-desc">
+            覆盖工程脚手架、数据状态机、战力先验、背包 DP 决策算法、WPF 穿透 HUD、压测与发布 6 大工程阶段。
+          </div>
+        </div>
+
+        <div class="box-item">
+          <div class="step-num">Metric 02 · 首批就绪</div>
+          <div class="step-title" style="color: #10b981;">4 个初始可开工任务</div>
+          <div class="step-desc">
+            入度为 0（<code>T01</code>, <code>T02</code>, <code>T07</code>, <code>T08</code>），无任何前置阻碍，可在第一天由多位工程师并行启动。
+          </div>
+        </div>
+
+        <div class="box-item">
+          <div class="step-num">Metric 03 · 交付决胜线</div>
+          <div class="step-title" style="color: #ef4444;">9 级核心关键路径 (Critical Path)</div>
+          <div class="step-desc">
+            从脚手架到决策背包 DP 再到集成发布的最长依赖路径，决定了项目交付的最短时间边界（约 10~14 个工作日）。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 交互式 DAG 矩阵与任务检视器 -->
+    <section class="card">
+      <h2>2. 交互式 DAG 任务拓扑检视器 (Interactive DAG Inspector)</h2>
+      <p>
+        点击任意任务卡片，系统将高亮显示其<strong>上游前置依赖（青色）</strong>与<strong>下游解锁后置（紫色）</strong>，并可在下方检视器中查阅任务契约或模拟标记完成：
+      </p>
+
+      <div class="dag-controls">
+        <button class="filter-btn active" data-filter="all">全部任务 (23)</button>
+        <button class="filter-btn" data-filter="ready">🟢 可立即开工 (入度=0)</button>
+        <button class="filter-btn" data-filter="critical">🔥 关键路径任务 (9)</button>
+        <button class="filter-btn" data-filter="blocked">🔒 依赖阻塞中</button>
+      </div>
+
+      <!-- Matrix Cards -->
+      <div id="dag-matrix" class="dag-matrix">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Task Inspector Drawer -->
+      <div id="task-inspector" class="task-inspector">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- 3. 核心关键路径分析 -->
+    <section class="card">
+      <h2>3. 核心关键路径分析 (Critical Path Analysis)</h2>
+      <p>
+        箭头 $A \longrightarrow B$ 代表<strong>任务 A 是任务 B 的必要前置条件</strong>。整个项目交付的最短工期由以下 9 个任务串行组成的<strong>关键路径</strong>所决定：
+      </p>
+
+      <div class="box-item" style="background: rgba(239, 68, 68, 0.08); border-left: 4px solid var(--accent-red); margin: 1rem 0;">
+        <div style="font-family: ui-monospace, monospace; font-size: 0.95rem; color: #fff; line-height: 1.8;">
+          <strong style="color: #f87171;">T01 (工程脚手架)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T03 (HearthDb元数据)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T04 (盘面状态DTO)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T11 (候选动作集)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T12 (边际收益评估)</strong>
+          <br>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T13 (5ms背包DP)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T20 (IPlugin主入口集成)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T21 (零GC基准压测)</strong>
+          <span style="color: #64748b;"> &rarr; </span>
+          <strong style="color: #f87171;">T23 (构建打包发布)</strong>
+        </div>
+      </div>
+
+      <p style="font-size: 0.9rem; color: #94a3b8;">
+        关键路径上的任务均涉及底层数据结构与算法核心逻辑，任何延误都将直接推迟最终发版。其他支线任务（如 <code>T15</code>~<code>T19</code> 的 HUD 控件、<code>T08</code>~<code>T10</code> 的先验知识图谱）均可在此主干推进过程中并行消化。
+      </p>
+    </section>
+
+    <!-- 4. 完整 23 项任务规格一览表 -->
+    <section class="card">
+      <h2>4. 完整 23 项原子任务规格与依赖速查表</h2>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>任务名称</th>
+            <th>模块分类</th>
+            <th>前置依赖 (Prerequisites)</th>
+            <th>后置解锁 (Dependents)</th>
+            <th>关键路径</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code style="color: #38bdf8;">T01</code></td>
+            <td>HDT 插件工程脚手架搭建</td>
+            <td>基础工程</td>
+            <td><span style="color: #34d399;">无 (根任务)</span></td>
+            <td>T03, T04, T05, T15</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T02</code></td>
+            <td>静态合规审查规则器</td>
+            <td>合规安全</td>
+            <td><span style="color: #34d399;">无 (根任务)</span></td>
+            <td>T20, T23</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T03</code></td>
+            <td>HearthDb 元数据适配封装</td>
+            <td>数据层</td>
+            <td>T01</td>
+            <td>T04, T14</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T04</code></td>
+            <td>盘面状态轻量 DTO 与快照定义</td>
+            <td>数据层</td>
+            <td>T01, T03</td>
+            <td>T05, T06, T11, T14</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T05</code></td>
+            <td>HDT 游戏事件转换与状态机</td>
+            <td>数据层</td>
+            <td>T01, T04</td>
+            <td>T20</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T06</code></td>
+            <td>离线盘面对局回放测试数据集</td>
+            <td>数据测试</td>
+            <td>T04</td>
+            <td>T21</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T07</code></td>
+            <td>Bob's Buddy 战力模拟桥接适配器</td>
+            <td>战力仿真</td>
+            <td><span style="color: #34d399;">无 (根任务)</span></td>
+            <td>T10</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T08</code></td>
+            <td>流派构筑与种族协同知识图谱</td>
+            <td>先验知识</td>
+            <td><span style="color: #34d399;">无 (根任务)</span></td>
+            <td>T09</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T09</code></td>
+            <td>贝叶斯流派后验概率推导器</td>
+            <td>算法层</td>
+            <td>T08</td>
+            <td>T12</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T10</code></td>
+            <td>战力生死线风控调节阀</td>
+            <td>算法层</td>
+            <td>T07</td>
+            <td>T12</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T11</code></td>
+            <td>原子操作候选动作集生成器</td>
+            <td>算法层</td>
+            <td>T04</td>
+            <td>T12</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T12</code></td>
+            <td>动作边际收益价值评估器</td>
+            <td>算法层</td>
+            <td>T09, T10, T11</td>
+            <td>T13</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T13</code></td>
+            <td>分支定界有界背包 DP 求解器</td>
+            <td>算法层</td>
+            <td>T12</td>
+            <td>T20</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T14</code></td>
+            <td>随从站位排列启发式排序器</td>
+            <td>算法层</td>
+            <td>T03, T04</td>
+            <td>T20</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T15</code></td>
+            <td>WPF 透明点击穿透覆盖层基类</td>
+            <td>表现层</td>
+            <td>T01</td>
+            <td>T16, T17, T18, T19</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T16</code></td>
+            <td>酒馆卡面头顶微标控件 (Badge)</td>
+            <td>表现层</td>
+            <td>T15</td>
+            <td>T20</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T17</code></td>
+            <td>顶部决策横条控件 (Banner)</td>
+            <td>表现层</td>
+            <td>T15</td>
+            <td>T20</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T18</code></td>
+            <td>胜率与暴毙概率仪表盘 (Gauge)</td>
+            <td>表现层</td>
+            <td>T15</td>
+            <td>T20</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T19</code></td>
+            <td>游戏窗口吸附与坐标变换对齐</td>
+            <td>表现层</td>
+            <td>T15</td>
+            <td>T20</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T20</code></td>
+            <td>HDT IPlugin 主入口与生命周期装配</td>
+            <td>系统集成</td>
+            <td>T02, T05, T13, T14, T16, T17, T18, T19</td>
+            <td>T21, T22</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T21</code></td>
+            <td>离线基准性能与零 GC 压测套件</td>
+            <td>质量验证</td>
+            <td>T06, T20</td>
+            <td>T23</td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T22</code></td>
+            <td>玩家个性化配置与快捷控制面板</td>
+            <td>用户体验</td>
+            <td>T20</td>
+            <td>T23</td>
+            <td>否</td>
+          </tr>
+          <tr>
+            <td><code style="color: #38bdf8;">T23</code></td>
+            <td>自动化构建流水线与版本交付包</td>
+            <td>工程发布</td>
+            <td>T02, T21, T22</td>
+            <td><span style="color: #94a3b8;">无 (终点交付)</span></td>
+            <td><strong style="color: #f87171;">是</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      TavernOracle 方案 A 原子任务有向图 · 详细文档：<code>docs/atomic_tasks_dag.md</code> · 交互演示：<code>report_html/005_atomic_tasks_dag/index.html</code>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

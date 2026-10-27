@@ -1,0 +1,158 @@
+{
+  "turn": 7,
+  "heroCardId": "BG_HERO_116",
+  "health": 25,
+  "armor": 4,
+  "tavernTier": 4,
+  "upgradeCost": 7,
+  "isFrozen": false,
+  "bannedRaces": "Pirate, Quilboar",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.5,
+    "tieRate": 0.15,
+    "lossRate": 0.35,
+    "lethalRate": 0.06,
+    "averageDamageTaken": 0.5,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "APM Elementals: Nomi cycling ramp phase"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BGS_046",
+      "attack": 4,
+      "health": 4,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG_BOT_451",
+      "attack": 7,
+      "health": 4,
+      "tier": 3,
+      "race": "Elemental",
+      "mechanics": "DivineShield, Windfury",
+      "isGolden": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG_DAL_742",
+      "attack": 5,
+      "health": 5,
+      "tier": 3,
+      "race": "Elemental",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG26_167",
+      "attack": 4,
+      "health": 5,
+      "tier": 2,
+      "race": "Elemental",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BG_TEMPO_MINION",
+      "attack": 6,
+      "health": 6,
+      "tier": 3,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG_ELE_TOKEN_1",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_ELE_TOKEN_2",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 203,
+      "cardId": "BG_ELE_TOKEN_3",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 204,
+      "cardId": "BG_SPELL_ROLL",
+      "cost": 1,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 3
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BG_ELE_SHOP_1",
+      "cost": 3,
+      "tier": 2,
+      "race": "Elemental",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG_ELE_SHOP_2",
+      "cost": 3,
+      "tier": 3,
+      "race": "Elemental",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG_ELE_SHOP_3",
+      "cost": 3,
+      "tier": 4,
+      "race": "Elemental",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_131",
+      "cost": 3,
+      "tier": 4,
+      "race": "Mech",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_132",
+      "cost": 3,
+      "tier": 3,
+      "race": "Demon",
+      "isFrozen": false
+    }
+  ]
+}

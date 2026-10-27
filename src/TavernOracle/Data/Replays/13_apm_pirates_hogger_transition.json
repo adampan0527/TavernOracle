@@ -1,0 +1,177 @@
+{
+  "turn": 9,
+  "heroCardId": "BG_HERO_113",
+  "health": 24,
+  "armor": 2,
+  "tavernTier": 5,
+  "upgradeCost": 9,
+  "isFrozen": false,
+  "bannedRaces": "Beast, Murloc",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.58,
+    "tieRate": 0.12,
+    "lossRate": 0.3,
+    "lethalRate": 0.04,
+    "averageDamageTaken": -2,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "APM Pirates: Double Hogger infinite econ engine"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BG26_525",
+      "attack": 14,
+      "health": 10,
+      "tier": 4,
+      "race": "Pirate",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG21_016",
+      "attack": 10,
+      "health": 12,
+      "tier": 4,
+      "race": "Pirate",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG26_524",
+      "attack": 8,
+      "health": 14,
+      "tier": 5,
+      "race": "Pirate",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BGS_046",
+      "attack": 8,
+      "health": 8,
+      "tier": 5,
+      "race": "Pirate",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BGS_046",
+      "attack": 8,
+      "health": 8,
+      "tier": 5,
+      "race": "Pirate",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    },
+    {
+      "entityId": 106,
+      "cardId": "BG_PIR_03",
+      "attack": 6,
+      "health": 7,
+      "tier": 3,
+      "race": "Pirate",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 5
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG_PIR_HAND_1",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_PIR_HAND_2",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 203,
+      "cardId": "BG_PIR_HAND_3",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 204,
+      "cardId": "BG_SPELL_GOLD",
+      "cost": 1,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 3
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BG_PIR_SHOP_1",
+      "cost": 3,
+      "tier": 2,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG_PIR_SHOP_2",
+      "cost": 3,
+      "tier": 3,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG_PIR_SHOP_3",
+      "cost": 3,
+      "tier": 4,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_101",
+      "cost": 3,
+      "tier": 4,
+      "race": "None",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_102",
+      "cost": 3,
+      "tier": 5,
+      "race": "Dragon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 306,
+      "cardId": "BG20_103",
+      "cost": 3,
+      "tier": 5,
+      "race": "Elemental",
+      "isFrozen": false
+    }
+  ]
+}

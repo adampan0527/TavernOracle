@@ -1,0 +1,53 @@
+{
+  "turn": 1,
+  "heroCardId": "BG_HERO_101",
+  "health": 30,
+  "armor": 8,
+  "tavernTier": 1,
+  "upgradeCost": 5,
+  "isFrozen": false,
+  "bannedRaces": "Undead, Naga",
+  "gold": {
+    "available": 3,
+    "max": 3,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.45,
+    "tieRate": 0.1,
+    "lossRate": 0.45,
+    "lethalRate": 0.1,
+    "averageDamageTaken": 0,
+    "simulationsCount": 0,
+    "isDegraded": true,
+    "statusMessage": "Offline Mode / Default Safe Prior"
+  },
+  "boardMinions": [],
+  "handCards": [],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BG_MUR_TIDEHUNTER",
+      "cost": 3,
+      "tier": 1,
+      "race": "Murloc",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG_PIR_SWABBY",
+      "cost": 3,
+      "tier": 1,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG_BEA_ALLEYCAT",
+      "cost": 3,
+      "tier": 1,
+      "race": "Beast",
+      "isFrozen": false
+    }
+  ]
+}

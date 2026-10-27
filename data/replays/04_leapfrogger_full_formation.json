@@ -1,0 +1,172 @@
+{
+  "turn": 12,
+  "heroCardId": "BG_HERO_102",
+  "health": 15,
+  "armor": 0,
+  "tavernTier": 6,
+  "upgradeCost": 0,
+  "isFrozen": false,
+  "bannedRaces": "Murloc, Demon",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.9,
+    "tieRate": 0.05,
+    "lossRate": 0.05,
+    "lethalRate": 0,
+    "averageDamageTaken": -12.4,
+    "simulationsCount": 8000,
+    "isDegraded": false,
+    "statusMessage": "Full formation leapfrogger beast juggernaut"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BGS_078_G",
+      "attack": 10,
+      "health": 6,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "Reborn",
+      "isGolden": true,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG21_000_G",
+      "attack": 8,
+      "health": 8,
+      "tier": 2,
+      "race": "Beast",
+      "mechanics": "Reborn, Deathrattle",
+      "isGolden": true,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BGS_078",
+      "attack": 7,
+      "health": 5,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "Reborn",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG19_010",
+      "attack": 4,
+      "health": 12,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BG26_355_G",
+      "attack": 6,
+      "health": 12,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "None",
+      "isGolden": true,
+      "zonePosition": 4
+    },
+    {
+      "entityId": 106,
+      "cardId": "BG25_352_G",
+      "attack": 2,
+      "health": 14,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": true,
+      "zonePosition": 5
+    },
+    {
+      "entityId": 107,
+      "cardId": "BG25_352",
+      "attack": 1,
+      "health": 7,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "Stealth",
+      "isGolden": false,
+      "zonePosition": 6
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG_SPELL_SHIELD",
+      "cost": 2,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_SPELL_STATS",
+      "cost": 1,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 1
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BG20_010",
+      "cost": 3,
+      "tier": 6,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG20_011",
+      "cost": 3,
+      "tier": 6,
+      "race": "None",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG20_012",
+      "cost": 3,
+      "tier": 5,
+      "race": "Mech",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_013",
+      "cost": 3,
+      "tier": 5,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_014",
+      "cost": 3,
+      "tier": 6,
+      "race": "Dragon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 306,
+      "cardId": "BG20_015",
+      "cost": 3,
+      "tier": 6,
+      "race": "Elemental",
+      "isFrozen": false
+    }
+  ]
+}

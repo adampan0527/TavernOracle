@@ -1,0 +1,114 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;net8.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RootNamespace>TavernOracle</RootNamespace>
+    <AssemblyName>TavernOracle</AssemblyName>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Authors>TavernOracle Team</Authors>
+    <Company>TavernOracle</Company>
+    <Product>TavernOracle</Product>
+    <Description>酒馆战棋实时战术参谋长 HUD 辅助系统 (Real-time Tactical Advisor for Hearthstone Battlegrounds)</Description>
+    <NoWarn>$(NoWarn);MSB3277</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net472'">
+    <Nullable>annotations</Nullable>
+    <NoWarn>$(NoWarn);CS8600;CS8601;CS8602;CS8603;CS8604;CS8618;CS8625</NoWarn>
+  </PropertyGroup>
+
+  <!-- Package References for .NET Framework 4.7.2 (HDT Runtime Host) -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Bcl.HashCode" Version="1.1.1" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+    <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+    <PackageReference Include="System.Memory" Version="4.5.5" />
+  </ItemGroup>
+
+  <!-- HDT Assembly Discovery & Reference Configuration -->
+  <PropertyGroup>
+    <!-- HDT executable search paths: Environment variable, Desktop game folder, local lib folder, AppData, LocalAppData -->
+    <HDTAssembly Condition="'$(HDTAssembly)' == '' and '$(HDT_PATH)' != '' and Exists('$(HDT_PATH)\HearthstoneDeckTracker.exe')">$(HDT_PATH)\HearthstoneDeckTracker.exe</HDTAssembly>
+    <HDTAssembly Condition="'$(HDTAssembly)' == '' and Exists('C:\Users\Adam\Desktop\game\HDT\HearthstoneDeckTracker.exe')">C:\Users\Adam\Desktop\game\HDT\HearthstoneDeckTracker.exe</HDTAssembly>
+    <HDTAssembly Condition="'$(HDTAssembly)' == '' and Exists('$(MSBuildThisFileDirectory)..\..\lib\HearthstoneDeckTracker.exe')">$(MSBuildThisFileDirectory)..\..\lib\HearthstoneDeckTracker.exe</HDTAssembly>
+    <HDTAssembly Condition="'$(HDTAssembly)' == '' and Exists('$(LOCALAPPDATA)\HearthstoneDeckTracker\HearthstoneDeckTracker.exe')">$(LOCALAPPDATA)\HearthstoneDeckTracker\HearthstoneDeckTracker.exe</HDTAssembly>
+    <HDTAssembly Condition="'$(HDTAssembly)' == '' and Exists('$(APPDATA)\HearthstoneDeckTracker\HearthstoneDeckTracker.exe')">$(APPDATA)\HearthstoneDeckTracker\HearthstoneDeckTracker.exe</HDTAssembly>
+
+    <HearthDbAssembly Condition="'$(HearthDbAssembly)' == '' and '$(HDT_PATH)' != '' and Exists('$(HDT_PATH)\HearthDb.dll')">$(HDT_PATH)\HearthDb.dll</HearthDbAssembly>
+    <HearthDbAssembly Condition="'$(HearthDbAssembly)' == '' and Exists('C:\Users\Adam\Desktop\game\HDT\HearthDb.dll')">C:\Users\Adam\Desktop\game\HDT\HearthDb.dll</HearthDbAssembly>
+    <HearthDbAssembly Condition="'$(HearthDbAssembly)' == '' and Exists('$(MSBuildThisFileDirectory)..\..\lib\HearthDb.dll')">$(MSBuildThisFileDirectory)..\..\lib\HearthDb.dll</HearthDbAssembly>
+    <HearthDbAssembly Condition="'$(HearthDbAssembly)' == '' and Exists('$(LOCALAPPDATA)\HearthstoneDeckTracker\HearthDb.dll')">$(LOCALAPPDATA)\HearthstoneDeckTracker\HearthDb.dll</HearthDbAssembly>
+    <HearthDbAssembly Condition="'$(HearthDbAssembly)' == '' and Exists('$(APPDATA)\HearthstoneDeckTracker\HearthDb.dll')">$(APPDATA)\HearthstoneDeckTracker\HearthDb.dll</HearthDbAssembly>
+
+    <!-- Define constants when references are present -->
+    <DefineConstants Condition="'$(HDTAssembly)' != ''">$(DefineConstants);HAS_HDT_REFERENCE</DefineConstants>
+    <DefineConstants Condition="'$(HearthDbAssembly)' != ''">$(DefineConstants);HAS_HEARTHDB_REFERENCE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(HDTAssembly)' != ''">
+    <Reference Include="HearthstoneDeckTracker">
+      <HintPath>$(HDTAssembly)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(HearthDbAssembly)' != ''">
+    <Reference Include="HearthDb">
+      <HintPath>$(HearthDbAssembly)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Distribution and Post-Build Deployment Target -->
+  <PropertyGroup>
+    <!-- Fallback SolutionDir when invoked directly on csproj -->
+    <SolutionDir Condition="'$(SolutionDir)' == '' or '$(SolutionDir)' == '*Undefined*'">$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..\'))</SolutionDir>
+    <!-- Output archive directory inside solution for clean deployment -->
+    <PluginDistDir>$(SolutionDir)dist\Plugins\TavernOracle\</PluginDistDir>
+    <!-- HDT AppData Plugins directory if it exists -->
+    <HdtPluginsDir Condition="'$(DeployToHdt)' != 'false' and '$(HdtPluginsDir)' == '' and Exists('$(APPDATA)\HearthstoneDeckTracker\Plugins')">$(APPDATA)\HearthstoneDeckTracker\Plugins\TavernOracle\</HdtPluginsDir>
+    <!-- HDT Desktop installation Plugins directory if it exists -->
+    <HdtGamePluginsDir Condition="'$(DeployToHdt)' != 'false' and '$(HdtGamePluginsDir)' == '' and Exists('C:\Users\Adam\Desktop\game\HDT\Plugins')">C:\Users\Adam\Desktop\game\HDT\Plugins\TavernOracle\</HdtGamePluginsDir>
+  </PropertyGroup>
+
+  <Target Name="DeployPlugin" AfterTargets="Build" Condition="'$(TargetFramework)' == 'net472'">
+    <Message Importance="high" Text="[TavernOracle] Deploying net472 plugin artifacts to $(PluginDistDir)..." />
+    <MakeDir Directories="$(PluginDistDir)" />
+    <ItemGroup>
+      <OutputArtifacts Include="$(TargetDir)*.dll" />
+      <OutputArtifacts Include="$(TargetDir)*.pdb" />
+    </ItemGroup>
+    <Copy SourceFiles="@(OutputArtifacts)" DestinationFolder="$(PluginDistDir)" SkipUnchangedFiles="true" />
+
+    <!-- Auto-deploy to AppData HDT installation if found -->
+    <MakeDir Directories="$(HdtPluginsDir)" Condition="'$(HdtPluginsDir)' != ''" />
+    <Copy SourceFiles="@(OutputArtifacts)" DestinationFolder="$(HdtPluginsDir)" SkipUnchangedFiles="true" Condition="'$(HdtPluginsDir)' != ''" />
+    <Message Importance="high" Text="[TavernOracle] Successfully mirrored plugin to HDT AppData: $(HdtPluginsDir)" Condition="'$(HdtPluginsDir)' != ''" />
+
+    <!-- Auto-deploy to Desktop HDT installation if found -->
+    <MakeDir Directories="$(HdtGamePluginsDir)" Condition="'$(HdtGamePluginsDir)' != ''" />
+    <Copy SourceFiles="@(OutputArtifacts)" DestinationFolder="$(HdtGamePluginsDir)" SkipUnchangedFiles="true" Condition="'$(HdtGamePluginsDir)' != ''" />
+    <Message Importance="high" Text="[TavernOracle] Successfully mirrored plugin to HDT Game: $(HdtGamePluginsDir)" Condition="'$(HdtGamePluginsDir)' != ''" />
+  </Target>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Priors\archetypes.json" />
+    <None Update="Priors\archetypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Data\Replays\*.json" />
+    <None Update="Data\Replays\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,123 @@
+{
+  "turn": 6,
+  "heroCardId": "BG_HERO_102",
+  "health": 28,
+  "armor": 4,
+  "tavernTier": 3,
+  "upgradeCost": 6,
+  "isFrozen": false,
+  "bannedRaces": "Undead, Naga",
+  "gold": {
+    "available": 8,
+    "max": 8,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.55,
+    "tieRate": 0.1,
+    "lossRate": 0.35,
+    "lethalRate": 0.05,
+    "averageDamageTaken": 2.1,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "Transitioning into beasts"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BG21_000",
+      "attack": 3,
+      "health": 3,
+      "tier": 2,
+      "race": "Beast",
+      "mechanics": "Deathrattle",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG19_010",
+      "attack": 1,
+      "health": 9,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG26_805",
+      "attack": 4,
+      "health": 1,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Deathrattle",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG20_001",
+      "attack": 3,
+      "health": 4,
+      "tier": 2,
+      "race": "Beast",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 3
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG21_000",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_SPELL_01",
+      "cost": 1,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 1
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BGS_078",
+      "cost": 3,
+      "tier": 4,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG21_010",
+      "cost": 3,
+      "tier": 3,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BGS_071",
+      "cost": 3,
+      "tier": 3,
+      "race": "Mech",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG21_012",
+      "cost": 3,
+      "tier": 2,
+      "race": "Pirate",
+      "isFrozen": false
+    }
+  ]
+}

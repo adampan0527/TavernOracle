@@ -1,0 +1,325 @@
+<UserControl x:Class="TavernOracle.Presentation.Settings.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:TavernOracle.Presentation.Settings"
+             mc:Ignorable="d"
+             d:DesignHeight="720" d:DesignWidth="600"
+             d:DataContext="{d:DesignInstance local:SettingsViewModel}"
+             Background="#0D1117"
+             Foreground="#F3F4F6"
+             FontFamily="Segoe UI, Microsoft YaHei, sans-serif">
+
+    <UserControl.Resources>
+        <!-- Card Container Style -->
+        <Style x:Key="SettingCardStyle" TargetType="Border">
+            <Setter Property="Background" Value="#161B22" />
+            <Setter Property="BorderBrush" Value="#30363D" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="Margin" Value="0,0,0,16" />
+        </Style>
+
+        <!-- Standard Button Style -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#21262D" />
+            <Setter Property="Foreground" Value="#F3F4F6" />
+            <Setter Property="BorderBrush" Value="#30363D" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="14,6" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#30363D" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="#8B949E" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#0D1117" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Accent Pill Badge Style -->
+        <Style x:Key="PillBadgeStyle" TargetType="Border">
+            <Setter Property="Background" Value="#21262D" />
+            <Setter Property="BorderBrush" Value="#30363D" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="4" />
+            <Setter Property="Padding" Value="8,2" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="24,20,24,24" MaxWidth="680">
+
+            <!-- Title & Branding Header -->
+            <Border Style="{StaticResource SettingCardStyle}" Background="#1F242C" BorderBrush="#F59E0B" Margin="0,0,0,20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="TAVERN ORACLE"
+                                       FontSize="20"
+                                       FontWeight="Bold"
+                                       Foreground="#F59E0B" />
+                            <Border Margin="10,0,0,0"
+                                    Background="#33F59E0B"
+                                    BorderBrush="#F59E0B"
+                                    BorderThickness="1"
+                                    CornerRadius="4"
+                                    Padding="6,1"
+                                    VerticalAlignment="Center">
+                                <TextBlock Text="v1.0.0"
+                                           FontSize="11"
+                                           FontWeight="Bold"
+                                           Foreground="#FBBF24" />
+                            </Border>
+                        </StackPanel>
+                        <TextBlock Text="酒馆先知 · 实时战术参谋长个性化控制台"
+                                   FontSize="13"
+                                   Foreground="#9CA3AF"
+                                   Margin="0,4,0,0" />
+                    </StackPanel>
+
+                    <Border Grid.Column="1"
+                            Background="#161B22"
+                            BorderBrush="#10B981"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Padding="10,6"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="纸笔准则合规 ✓"
+                                   FontSize="11"
+                                   FontWeight="SemiBold"
+                                   Foreground="#10B981" />
+                    </Border>
+                </Grid>
+            </Border>
+
+            <!-- Group 1: Master Toggle Switch -->
+            <Border Style="{StaticResource SettingCardStyle}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                        <TextBlock Text="启用 HUD 悬浮辅助图层"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Foreground="#F3F4F6" />
+                        <TextBlock Text="全局控制所有战棋战术 HUD 悬浮元素（顶部横条、随从微标、暴毙仪表盘）的绘制与显隐。"
+                                   FontSize="12"
+                                   Foreground="#9CA3AF"
+                                   TextWrapping="Wrap"
+                                   Margin="0,4,16,0" />
+                    </StackPanel>
+
+                    <CheckBox Grid.Column="1"
+                              IsChecked="{Binding IsOverlayEnabled, Mode=TwoWay}"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"
+                              Cursor="Hand" />
+                </Grid>
+            </Border>
+
+            <!-- Group 2: Decision Algorithm & Risk Tuning -->
+            <Border Style="{StaticResource SettingCardStyle}">
+                <StackPanel>
+                    <TextBlock Text="决策算法与风控调节"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#F59E0B"
+                               Margin="0,0,0,16" />
+
+                    <!-- Slider 1: Tempo Weight -->
+                    <Grid Margin="0,0,0,6">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="战力激进 / 保守度 (Tempo Weight)"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#F3F4F6" />
+                        </StackPanel>
+                        <Border Style="{StaticResource PillBadgeStyle}" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding TempoWeightDisplay}"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#38BDF8" />
+                        </Border>
+                    </Grid>
+
+                    <Slider Value="{Binding TempoWeight, Mode=TwoWay}"
+                            Minimum="0.5"
+                            Maximum="2.5"
+                            SmallChange="0.05"
+                            LargeChange="0.1"
+                            TickFrequency="0.1"
+                            IsSnapToTickEnabled="False"
+                            Cursor="Hand"
+                            Margin="0,6,0,4" />
+
+                    <Grid Margin="0,0,0,4">
+                        <TextBlock Text="0.5x (贪发育 / 留对子)" FontSize="11" Foreground="#9CA3AF" HorizontalAlignment="Left" />
+                        <TextBlock Text="1.0x (标准均衡)" FontSize="11" Foreground="#6B7280" HorizontalAlignment="Center" />
+                        <TextBlock Text="2.5x (战力拉满 / 保命优先)" FontSize="11" Foreground="#9CA3AF" HorizontalAlignment="Right" />
+                    </Grid>
+
+                    <TextBlock Text="调节背包算法对即时保命战力 (w_tempo) 与远期成长 (w_scale) 的权衡。数值越高越优先拉满战力防暴毙；数值越低越优先找核心升本。"
+                               FontSize="11"
+                               Foreground="#6B7280"
+                               TextWrapping="Wrap"
+                               Margin="0,2,0,18" />
+
+                    <Separator Background="#21262D" Height="1" Margin="0,0,0,16" />
+
+                    <!-- Slider 2: Lethal Threshold -->
+                    <Grid Margin="0,0,0,6">
+                        <TextBlock Text="暴毙危机警戒线门槛 (Lethal Threshold)"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Foreground="#F3F4F6"
+                                   VerticalAlignment="Center" />
+                        <Border Style="{StaticResource PillBadgeStyle}" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding LethalThresholdDisplay}"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="#EF4444" />
+                        </Border>
+                    </Grid>
+
+                    <Slider Value="{Binding LethalThreshold, Mode=TwoWay}"
+                            Minimum="0.10"
+                            Maximum="0.50"
+                            SmallChange="0.01"
+                            LargeChange="0.05"
+                            TickFrequency="0.05"
+                            IsSnapToTickEnabled="False"
+                            Cursor="Hand"
+                            Margin="0,6,0,4" />
+
+                    <Grid Margin="0,0,0,4">
+                        <TextBlock Text="10% (极度敏感)" FontSize="11" Foreground="#9CA3AF" HorizontalAlignment="Left" />
+                        <TextBlock Text="30% (官方标准)" FontSize="11" Foreground="#6B7280" HorizontalAlignment="Center" />
+                        <TextBlock Text="50% (沉着大胆)" FontSize="11" Foreground="#9CA3AF" HorizontalAlignment="Right" />
+                    </Grid>
+
+                    <TextBlock Text="当战力模拟计算得出的下一场暴毙率超过此门槛时，顶部横条突变为红色【绝地保命】警报并强制切断贪婪逻辑。"
+                               FontSize="11"
+                               Foreground="#6B7280"
+                               TextWrapping="Wrap"
+                               Margin="0,2,0,0" />
+                </StackPanel>
+            </Border>
+
+            <!-- Group 3: Presentation Component Visibility -->
+            <Border Style="{StaticResource SettingCardStyle}">
+                <StackPanel>
+                    <TextBlock Text="HUD 悬浮组件独立控制"
+                               FontSize="14"
+                               FontWeight="Bold"
+                               Foreground="#38BDF8"
+                               Margin="0,0,0,16" />
+
+                    <!-- Component 1: Banner -->
+                    <CheckBox IsChecked="{Binding IsBannerVisible, Mode=TwoWay}"
+                              Cursor="Hand"
+                              Margin="0,0,0,14">
+                        <StackPanel Margin="6,-2,0,0">
+                            <TextBlock Text="顶部大局策略横条 (Decision Banner)"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#F3F4F6" />
+                            <TextBlock Text="在屏幕顶部居中呈现当前回合最优操作、升本/锁酒馆时机与实时战力预警。"
+                                       FontSize="11"
+                                       Foreground="#9CA3AF"
+                                       Margin="0,2,0,0" />
+                        </StackPanel>
+                    </CheckBox>
+
+                    <!-- Component 2: Badges -->
+                    <CheckBox IsChecked="{Binding AreBadgesVisible, Mode=TwoWay}"
+                              Cursor="Hand"
+                              Margin="0,0,0,14">
+                        <StackPanel Margin="6,-2,0,0">
+                            <TextBlock Text="随从头顶战术微标 (Minion Badges)"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#F3F4F6" />
+                            <TextBlock Text="在酒馆及战场随从头顶动态标注三连对子 (🔥)、流派核心 (⭐) 与买入收益。"
+                                       FontSize="11"
+                                       Foreground="#9CA3AF"
+                                       Margin="0,2,0,0" />
+                        </StackPanel>
+                    </CheckBox>
+
+                    <!-- Component 3: Gauge -->
+                    <CheckBox IsChecked="{Binding IsLethalGaugeVisible, Mode=TwoWay}"
+                              Cursor="Hand">
+                        <StackPanel Margin="6,-2,0,0">
+                            <TextBlock Text="胜率与暴毙概率仪表盘 (Lethal Gauge)"
+                                       FontSize="13"
+                                       FontWeight="SemiBold"
+                                       Foreground="#F3F4F6" />
+                            <TextBlock Text="在屏幕左侧实时渲染预测胜率、打平率与下一战暴毙率百分比与颜色指示条。"
+                                       FontSize="11"
+                                       Foreground="#9CA3AF"
+                                       Margin="0,2,0,0" />
+                        </StackPanel>
+                    </CheckBox>
+                </StackPanel>
+            </Border>
+
+            <!-- Group 4: Footer Actions & Notes -->
+            <Grid Margin="0,4,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock Text="所有设置修改后实时生效，无需重启游戏。"
+                               FontSize="11"
+                               Foreground="#9CA3AF" />
+                    <TextBlock Text="配置自动落盘于 settings.json | 100% 遵守暴雪“纸笔准则”"
+                               FontSize="11"
+                               Foreground="#6B7280"
+                               Margin="0,2,0,0" />
+                </StackPanel>
+
+                <Button x:Name="ResetButton"
+                        Grid.Column="1"
+                        Style="{StaticResource ActionButtonStyle}"
+                        Content="恢复默认设置"
+                        Click="OnResetButtonClick"
+                        VerticalAlignment="Center" />
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

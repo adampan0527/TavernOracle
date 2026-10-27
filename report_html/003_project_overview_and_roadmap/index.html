@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:,">
+  <title>003_project_overview_and_roadmap - TavernOracle 项目全景与实现规划</title>
+  <link rel="stylesheet" href="lib/katex/katex.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="lib/katex/katex.min.js"></script>
+  <script defer src="lib/katex/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="tag">项目全景与落地规划 · REPORT 003</div>
+      <h1>TavernOracle（酒馆先知）全景分析与实现蓝图</h1>
+      <p class="subtitle">炉石传说·酒馆战棋 Windows 实时战术参谋长 HUD：架构拓扑、双模决策算法、时延预算与 4 周敏捷路线图</p>
+    </header>
+
+    <!-- 1. 项目定位与核心使命 -->
+    <section class="card">
+      <h2>1. 项目定位与核心使命 (Project Positioning)</h2>
+      <p>
+        <strong>TavernOracle（酒馆先知）</strong> 是一款专为《炉石传说·酒馆战棋》（Hearthstone Battlegrounds）设计的 <strong>Windows 平台实时“战术参谋长”HUD 辅助系统</strong>。
+      </p>
+
+      <div class="grid-3">
+        <div class="box-item">
+          <div class="step-num">Core Metric 01</div>
+          <div class="step-title" style="color: #38bdf8;">⚡ 极低时延预算 (&lt; 15ms)</div>
+          <div class="step-desc">
+            酒馆战棋单回合操作窗口通常仅有 30 秒“烧绳”倒计时，全链路（日志读取 $\to$ 状态更新 $\to$ 算法求解 $\to$ HUD 呈现）必须控制在 $15\text{ ms}$ 以内完成。
+          </div>
+        </div>
+
+        <div class="box-item">
+          <div class="step-num">Core Metric 02</div>
+          <div class="step-title" style="color: #f59e0b;">🎯 万分级决策吻合度 (85%~90%+)</div>
+          <div class="step-desc">
+            为玩家在瞬息万变的战局中提供最优的<strong>买入、卖出、刷新、冻结、升本及随从战力站位</strong>建议，对标天梯万分级选手的实战水平。
+          </div>
+        </div>
+
+        <div class="box-item">
+          <div class="step-num">Core Metric 03</div>
+          <div class="step-title" style="color: #10b981;">🛡️ 100% 暴雪“纸笔准则”</div>
+          <div class="step-desc">
+            零内存注入、零驱动挂钩、零键鼠模拟（严禁 <code>SendInput</code>/<code>mouse_event</code>），所有点击通过 <code>WS_EX_TRANSPARENT</code> 穿透，确保 0 封号风险。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 三层解耦系统架构与数据流 -->
+    <section class="card">
+      <h2>2. 三层解耦系统架构与数据流 (3-Tier Topology)</h2>
+      <p>
+        系统采用严格解耦的三层分层架构，从源头抛弃纯计算机视觉截屏与 OCR 方案，保证零 GPU 负担与 $100\%$ 数据准确度：
+      </p>
+
+      <div class="pipeline-flow">
+        <div class="pipeline-step step-p1">
+          <div class="step-num">Layer 1 · 数据摄取层</div>
+          <div class="step-title">Power.log 流式状态机</div>
+          <div class="step-desc">
+            无延迟监听客户端日志，结合 <code>HearthDb</code> 官方元数据映射 EntityID、随从属性、酒馆与手牌。
+          </div>
+          <div class="badge-metric">耗时 ≤ 5ms (捕获 2ms + 还原 3ms)</div>
+        </div>
+
+        <div class="pipeline-step step-p2">
+          <div class="step-num">Layer 2 · 决策大脑</div>
+          <div class="step-title">双模动态决策引擎</div>
+          <div class="step-desc">
+            模式 A（贝叶斯后验 + 生死线 + 背包 DP）与模式 B（Set Transformer 模仿学习）高效求解。
+          </div>
+          <div class="badge-metric">耗时 ≤ 5ms (模式 A)</div>
+        </div>
+
+        <div class="pipeline-step step-p3">
+          <div class="step-num">Layer 3 · 表现层</div>
+          <div class="step-title">透明点击穿透 HUD</div>
+          <div class="step-desc">
+            Win32 穿透渲染，在酒馆随从头顶浮现对子/核心/保命微标，顶部横条展示大局战略。
+          </div>
+          <div class="badge-metric">耗时 ≤ 5ms (硬件加速)</div>
+        </div>
+
+        <div class="pipeline-step step-p4">
+          <div class="step-num">Overall Budget</div>
+          <div class="step-title">全链路时延合计</div>
+          <div class="step-desc">
+            $2\text{ms} + 3\text{ms} + 5\text{ms} + 5\text{ms} = 15\text{ ms}$。远低于人类视觉反应极限（约 200ms），极致丝滑。
+          </div>
+          <div class="badge-metric" style="color: #10b981; background: rgba(16, 185, 129, 0.15);">总时延 ≤ 15ms</div>
+        </div>
+      </div>
+
+      <div class="formula-box">
+        <div style="font-weight: 700; color: #f59e0b; margin-bottom: 0.4rem;">❓ 为什么坚决不用“纯截图 + YOLO/OCR 识别”？</div>
+        <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #cbd5e1;">
+          <li><strong>动画动态干扰严重</strong>：金色卡牌晃动、买怪出牌飞行动画与 BUFF 浮层会导致 CV 漏识率高达 $15\% \sim 30\%$。</li>
+          <li><strong>计算延迟高且占用显卡</strong>：截屏 + 图像模型推理带来 $300 \sim 800\text{ ms}$ 延迟，且高负荷抢占显卡算力引发游戏掉帧。</li>
+          <li><strong>官方 Power.log 优势显著</strong>：暴雪原生输出，零延迟（$0\text{ ms}$），$100\%$ 字段结构化，对客户端性能零开销。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3. 决策大脑与数学建模演练 -->
+    <section class="card">
+      <h2>3. 决策大脑：双模算法架构与数学建模演练</h2>
+      <p>
+        酒馆战棋每回合操作空间包含数万（$> 10^5$）个分支路径。TavernOracle 通过“基石模式 A + 进阶模式 B”互补：
+      </p>
+
+      <div class="grid-2">
+        <div class="box-item">
+          <h3>模式 A · 生产级基石 (Rule &amp; Knapsack DP)</h3>
+          <p style="font-size: 0.9rem; color: #94a3b8;">
+            耗时 $&lt; 5\text{ ms}$，对标万分吻合度 $85\%+$，版本更新零秒冷启动。
+          </p>
+          <div class="formula-box" style="margin: 0.5rem 0;">
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.3rem;">贝叶斯流派后验概率：</div>
+            $$P(\text{流派}_k \mid H, C, B) \propto P(C \mid \text{流派}_k) \times P(\text{流派}_k \mid H, B)$$
+            <div style="font-size: 0.85rem; color: #94a3b8; margin: 0.5rem 0 0.3rem 0;">动作边际收益函数：</div>
+            $$\Delta V(a) = w_{\text{tempo}} \cdot \Delta\text{战力} + w_{\text{scale}} \cdot \Delta\text{协同} + \text{对子加成}$$
+          </div>
+          <p style="font-size: 0.85rem; color: #cbd5e1;">
+            结合千次蒙特卡洛战力生死线模拟（参考 Bob's Buddy），在金币与 7 卡位约束下运用<strong>分支定界背包算法</strong>在 5ms 内输出全局最优序列。
+          </p>
+        </div>
+
+        <div class="box-item">
+          <h3>模式 B · 进阶增强 (Set Transformer)</h3>
+          <p style="font-size: 0.9rem; color: #94a3b8;">
+            耗时 $50 \sim 100\text{ ms}$，对标职业选手操作吻合度 $90\%+$。
+          </p>
+          <div class="formula-box" style="margin: 0.5rem 0;">
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.3rem;">双头神经网络架构：</div>
+            <div>$\pi(a \mid s)$：策略头输出原子动作概率分布（买/卖/刷/升）</div>
+            <div>$V(s)$：价值头回归输出终局排名预期值 ($1.0 \sim 8.0$)</div>
+          </div>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #cbd5e1; margin-top: 0.5rem;">
+            <li><strong>跨实体自注意力</strong>：编码场上 7 随从 + 10 手牌 + 酒馆区交互。</li>
+            <li><strong>机制语义向量化 (Zero-Shot)</strong>：基于卡牌机制特征编码，版本身材微调零样本泛化。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 交互演示：战力生死线风控调节阀 -->
+      <div class="interactive-box">
+        <h3>🎮 交互演算：战力生死线风控调节阀 ($P_{\text{lethal}}$ 策略突变)</h3>
+        <p style="font-size: 0.9rem; color: #94a3b8;">
+          拖动滑块模拟预测下回合的暴毙概率 $P_{\text{lethal}}$，观察保命权重 $w_{\text{tempo}}$ 与贪婪权重 $w_{\text{scale}}$ 的动态重平衡：
+        </p>
+
+        <div class="control-row">
+          <label for="lethal-slider">下回合暴毙概率预测值 ($P_{\text{lethal}}$): <strong id="lethal-value" style="color: #38bdf8;">15%</strong></label>
+          <input type="range" id="lethal-slider" min="0" max="100" value="15">
+        </div>
+
+        <div class="control-row" style="font-size: 0.9rem; color: #8b949e;">
+          <div>即时战力保命权重 ($w_{\text{tempo}} = 1.0 + 3.0 \times P_{\text{lethal}}^2$): <strong id="tempo-weight" style="color: #38bdf8;">1.07</strong></div>
+          <div>远期成长贪婪权重 ($w_{\text{scale}} = 1.0 - 0.9 \times P_{\text{lethal}}$): <strong id="scale-weight" style="color: #f59e0b;">0.86</strong></div>
+        </div>
+
+        <div id="status-indicator" class="status-indicator">
+          <div id="strategy-title" style="font-weight: 700; color: #10b981;">🛡️ 稳态贪婪模式 (Greedy / Scaling Mode)</div>
+          <div id="strategy-desc" class="decision-result">暴毙风险极低 (≤ 15%)。算法优先升本、寻找理财三连、锁核心高星对子，积累远期成长复利。</div>
+        </div>
+      </div>
+
+      <!-- 交互演示：流派贝叶斯后验演示 -->
+      <div class="interactive-box" style="margin-top: 1.25rem;">
+        <h3>📊 交互演示：流派贝叶斯后验推断与核心组件</h3>
+        <p style="font-size: 0.9rem; color: #94a3b8;">选择当前场面出现的发动机组件，查看流派概率分布：</p>
+        <div class="control-row">
+          <label for="archetype-select">当前核心组件倾向：</label>
+          <select id="archetype-select" style="background: #182238; color: #fff; padding: 0.5rem 0.8rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; width: 100%; max-width: 320px;">
+            <option value="beasts">跳蛙/狂战野兽流 (Beasts)</option>
+            <option value="mechs">圣盾偏折机械流 (Mechs)</option>
+            <option value="murlocs">手牌剧毒鱼人流 (Murlocs)</option>
+            <option value="undead">全局攻击力亡语流 (Undead)</option>
+          </select>
+        </div>
+        <div id="archetype-info" style="font-size: 0.95rem; color: #e2e8f0; margin-bottom: 0.6rem;">
+          <strong>后验推断概率 $P(\text{流派} \mid H, C, B) \approx 82\%$</strong>：亡语复生频次堆叠 + 瑞文戴尔倍乘增益。战力计算重点评估亡语触发链条数。
+        </div>
+        <div id="archetype-cards" style="display: flex; flex-wrap: wrap;">
+          <span class="badge-metric" style="margin-right: 0.5rem; margin-bottom: 0.4rem;">跳蛙骑士 (1星)</span>
+          <span class="badge-metric" style="margin-right: 0.5rem; margin-bottom: 0.4rem;">巨狼先祖 (6星)</span>
+          <span class="badge-metric" style="margin-right: 0.5rem; margin-bottom: 0.4rem;">提塔斯·瑞文戴尔 (5星)</span>
+          <span class="badge-metric" style="margin-right: 0.5rem; margin-bottom: 0.4rem;">下水道老鼠 (2星)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 技术选型方案对比 -->
+    <section class="card">
+      <h2>4. 技术栈选型方案对比 (Tech Stack Comparison)</h2>
+      <p>为确保低延迟、高可靠性并最大化利用现有开源社区生态，项目规划了三种工程路径：</p>
+
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>方案</th>
+            <th>技术栈</th>
+            <th>核心优势</th>
+            <th>劣势与代价</th>
+            <th>推荐等级</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>方案 A (首选主干)</strong></td>
+            <td><strong>C# (.NET 8) + HDT 插件</strong></td>
+            <td>直接集成 <code>HearthDb</code>、<code>Bob's Buddy</code> 蒙特卡洛引擎，仅需专注决策算法，<strong>1~2 周即可交付 MVP</strong>。</td>
+            <td>依赖 HDT (Hearthstone Deck Tracker) 作为宿主。</td>
+            <td><strong style="color: #10b981;">★★★★★ (首推)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>方案 B (现代独立版)</strong></td>
+            <td><strong>Rust + Tauri + Webview2</strong></td>
+            <td>脱离 HDT 独立运行，包体积 &lt; 20MB，内存极低（&lt; 40MB），现代暗夜电竞毛玻璃 UI。</td>
+            <td>需自行维护 Power.log 状态机和卡牌 JSON 库，开发周期约 3~4 周。</td>
+            <td><strong style="color: #38bdf8;">★★★★☆ (进阶)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>方案 C (算法科研原型)</strong></td>
+            <td><strong>Python + PyTorch / DirectML</strong></td>
+            <td>离线录像回放分析、Set Transformer 模型训练与特征验证极其便捷。</td>
+            <td>运行时内存与启动时间稍大，通常作为离线训练流水线而非前台客户端。</td>
+            <td><strong style="color: #f59e0b;">★★★☆☆ (算法支撑)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 5. 4周敏捷落地路线图 -->
+    <section class="card">
+      <h2>5. 4 周敏捷开发与落地路线图 (4-Week Agile Roadmap)</h2>
+      <p>按周推进、小步快跑，点击各卡片可切换高亮查看阶段职责与关键交付物：</p>
+
+      <div class="roadmap-container">
+        <div class="week-card active" data-week="1">
+          <div class="week-header">
+            <div class="week-title">Week 1: 数据链路打通 (Data Ingestion)</div>
+            <span class="week-badge badge-w1">第 1 周 · 基础层</span>
+          </div>
+          <div class="week-detail">
+            编写并分发 <code>log.config</code> 配置文件激活官方调试日志输出；接入 <code>HearthDb</code> 官方元数据；搭建基于事件的 <code>Power.log</code> 流式状态机。
+          </div>
+          <div class="week-deliverable">
+            🎁 <strong>本周交付物</strong>：控制台实时打印酒馆当前在售随从、手牌列表、可用铸币、英雄血量与当前酒馆星级。
+          </div>
+        </div>
+
+        <div class="week-card" data-week="2">
+          <div class="week-header">
+            <div class="week-title">Week 2: 决策算法与背包求解注入 (Brain Core)</div>
+            <span class="week-badge badge-w2">第 2 周 · 核心算法</span>
+          </div>
+          <div class="week-detail">
+            构建卡牌种族协同知识图谱与整型位掩码（BitMask）；集成蒙特卡洛千次战力模拟生死线阀门；实现 5ms 分支定界有界背包求解器（Knapsack DP）。
+          </div>
+          <div class="week-deliverable">
+            🎁 <strong>本周交付物</strong>：控制台在 30 秒绳子内实时输出全局评分最高的最优买/卖/刷/升操作序列及收益拆解。
+          </div>
+        </div>
+
+        <div class="week-card" data-week="3">
+          <div class="week-header">
+            <div class="week-title">Week 3: 透明穿透 HUD 与游戏吸附 (Presentation Layer)</div>
+            <span class="week-badge badge-w3">第 3 周 · 表现层</span>
+          </div>
+          <div class="week-detail">
+            基于 Win32 API 挂载 <code>WS_EX_TRANSPARENT | WS_EX_LAYERED</code> 实现绝对鼠标穿透；监听游戏主窗口 <code>WM_MOVE</code>/<code>WM_SIZE</code> 保持像素级吸附；渲染卡面头顶微标与顶部大局横条。
+          </div>
+          <div class="week-deliverable">
+            🎁 <strong>本周交付物</strong>：游戏内无闪烁半透明 HUD 悬浮窗，卡面上浮对子与核心怪微标，不干扰玩家原生鼠标拖牌。
+          </div>
+        </div>
+
+        <div class="week-card" data-week="4">
+          <div class="week-header">
+            <div class="week-title">Week 4: 天梯对局微调与双模增强 (Tuning &amp; Deployment)</div>
+            <span class="week-badge badge-w4">第 4 周 · 实战打磨</span>
+          </div>
+          <div class="week-detail">
+            抓取社区万分段胜率矩阵注入贝叶斯单卡先验；对齐强势英雄技能（加里维克斯、拉法姆、阿凯等）专属节奏线；构建自解压打包安装程序。
+          </div>
+          <div class="week-deliverable">
+            🎁 <strong>本周交付物</strong>：发布首发 Release 安装包，开启实战天梯对局冲分，开展万分决策吻合度闭环验证。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. 版本更迭与零冷启动解耦策略 -->
+    <section class="card">
+      <h2>6. 版本更迭 (Meta Drift) 与零冷启动策略</h2>
+      <p>
+        酒馆战棋每隔 2~4 周即进行平衡性补丁（随从攻血身材微调、移除/新进随从）。系统具备<strong>三级弹性解耦冷启动机制</strong>：
+      </p>
+
+      <div class="grid-3">
+        <div class="box-item">
+          <div class="step-num">Stage 0 · 秒级热更</div>
+          <div class="step-title" style="color: #10b981;">Day 0: 规则与背包 DP</div>
+          <div class="step-desc">
+            卡牌属性解耦于外部 <code>cards.json</code>。补丁上线只需更新配置，模式 A 即刻生效，<strong>0 毫秒冷启动</strong>。
+          </div>
+        </div>
+
+        <div class="box-item">
+          <div class="step-num">Stage 1 · 先验注入</div>
+          <div class="step-title" style="color: #38bdf8;">Day 1~2: 天梯矩阵注入</div>
+          <div class="step-desc">
+            自动爬虫抓取天梯高分局前 48 小时的单卡胜率与前四率矩阵，动态微调贝叶斯流派先验权重。
+          </div>
+        </div>
+
+        <div class="box-item">
+          <div class="step-num">Stage 2 · 深度进化</div>
+          <div class="step-title" style="color: #c084fc;">Day 3+: 录像微调 (LoRA)</div>
+          <div class="step-desc">
+            抓取万分选手实战 Replay 录像，在预训练主干上微调模式 B 的轻量 LoRA 适配层，强化微操站位。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. 合规审查与工程约束总结 -->
+    <section class="card">
+      <h2>7. 绝对合规底线与 15ms 零 GC 工程约束</h2>
+
+      <div class="grid-2">
+        <div class="box-item">
+          <h3 style="color: #ef4444;">🛡️ 绝对安全合规红线 (Compliance Rules)</h3>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #cbd5e1; margin-top: 0.5rem;">
+            <li><strong>严禁任何键鼠模拟</strong>：严禁调用 <code>SendInput</code>、<code>mouse_event</code> 或 <code>SendKeys</code> 替玩家打牌。</li>
+            <li><strong>严禁内存与网络注入</strong>：不使用 <code>OpenProcess</code>、<code>ReadProcessMemory</code>，不挂载任何 DLL 注入钩子。</li>
+            <li><strong>唯一数据源</strong>：严格限定在本地文件流只读解析官方日志 <code>Power.log</code>。</li>
+          </ul>
+        </div>
+
+        <div class="box-item">
+          <h3 style="color: #38bdf8;">⚡ 15ms 零 GC 编码约束 (Zero GC Standards)</h3>
+          <ul style="font-size: 0.85rem; padding-left: 1.2rem; color: #cbd5e1; margin-top: 0.5rem;">
+            <li><strong>零短期堆分配</strong>：在 30 秒 DP 搜索循环中严禁使用 <code>new</code> 创建临时对象，规避 GC 掉帧。</li>
+            <li><strong>弃用 LINQ，使用内存池</strong>：采用定长结构体与 <code>ArrayPool&lt;T&gt;</code> 复用计算缓存。</li>
+            <li><strong>位运算极致加速</strong>：种族与状态标记采用整型 <code>BitMask</code>，协同匹配达到 $O(1)$ 复杂度。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      TavernOracle（酒馆先知）全景分析与实现蓝图 · 归档目录：<code>report_html/003_project_overview_and_roadmap/index.html</code>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

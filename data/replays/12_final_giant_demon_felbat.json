@@ -1,0 +1,172 @@
+{
+  "turn": 15,
+  "heroCardId": "BG_HERO_112",
+  "health": 18,
+  "armor": 0,
+  "tavernTier": 6,
+  "upgradeCost": 0,
+  "isFrozen": false,
+  "bannedRaces": "Pirate, Dragon",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.84,
+    "tieRate": 0.1,
+    "lossRate": 0.06,
+    "lethalRate": 0,
+    "averageDamageTaken": -13.8,
+    "simulationsCount": 10000,
+    "isDegraded": false,
+    "statusMessage": "Finals: 200/200\u002B Giant Demons Felbat Devour"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BG21_004_G",
+      "attack": 280,
+      "health": 280,
+      "tier": 5,
+      "race": "Demon",
+      "mechanics": "Taunt",
+      "isGolden": true,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BGS_004_G",
+      "attack": 210,
+      "health": 210,
+      "tier": 1,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": true,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG21_027_G",
+      "attack": 130,
+      "health": 130,
+      "tier": 6,
+      "race": "Demon",
+      "mechanics": "None",
+      "isGolden": true,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG21_027",
+      "attack": 85,
+      "health": 85,
+      "tier": 6,
+      "race": "Demon",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BG26_174",
+      "attack": 65,
+      "health": 65,
+      "tier": 5,
+      "race": "Demon",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    },
+    {
+      "entityId": 106,
+      "cardId": "BG26_ICC_029_G",
+      "attack": 15,
+      "health": 30,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": true,
+      "zonePosition": 5
+    },
+    {
+      "entityId": 107,
+      "cardId": "BG_DEM_VOIDLORD",
+      "attack": 80,
+      "health": 130,
+      "tier": 5,
+      "race": "Demon",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 6
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG_SPELL_DEMON_EAT",
+      "cost": 2,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_DEM_MINION",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 1
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BG20_091",
+      "cost": 3,
+      "tier": 6,
+      "race": "Demon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG20_092",
+      "cost": 3,
+      "tier": 6,
+      "race": "Demon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG20_093",
+      "cost": 3,
+      "tier": 5,
+      "race": "None",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_094",
+      "cost": 3,
+      "tier": 5,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_095",
+      "cost": 3,
+      "tier": 6,
+      "race": "Mech",
+      "isFrozen": false
+    },
+    {
+      "entityId": 306,
+      "cardId": "BG20_096",
+      "cost": 3,
+      "tier": 6,
+      "race": "Murloc",
+      "isFrozen": false
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "turn": 8,
+  "heroCardId": "BG_HERO_102",
+  "health": 22,
+  "armor": 3,
+  "tavernTier": 5,
+  "upgradeCost": 9,
+  "isFrozen": false,
+  "bannedRaces": "Pirate, Elemental",
+  "gold": {
+    "available": 10,
+    "max": 10,
+    "lockedInRoll": 0
+  },
+  "simulation": {
+    "winRate": 0.65,
+    "tieRate": 0.1,
+    "lossRate": 0.25,
+    "lethalRate": 0.02,
+    "averageDamageTaken": -3.2,
+    "simulationsCount": 5000,
+    "isDegraded": false,
+    "statusMessage": "Titus Rivendare secured"
+  },
+  "boardMinions": [
+    {
+      "entityId": 101,
+      "cardId": "BGS_078",
+      "attack": 5,
+      "health": 3,
+      "tier": 4,
+      "race": "Beast",
+      "mechanics": "Reborn",
+      "isGolden": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 102,
+      "cardId": "BG21_000",
+      "attack": 3,
+      "health": 3,
+      "tier": 2,
+      "race": "Beast",
+      "mechanics": "Reborn, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 1
+    },
+    {
+      "entityId": 103,
+      "cardId": "BG19_010",
+      "attack": 2,
+      "health": 10,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Taunt, Deathrattle",
+      "isGolden": false,
+      "zonePosition": 2
+    },
+    {
+      "entityId": 104,
+      "cardId": "BG26_805",
+      "attack": 5,
+      "health": 2,
+      "tier": 3,
+      "race": "Beast",
+      "mechanics": "Deathrattle",
+      "isGolden": false,
+      "zonePosition": 3
+    },
+    {
+      "entityId": 105,
+      "cardId": "BG25_352",
+      "attack": 1,
+      "health": 7,
+      "tier": 5,
+      "race": "None",
+      "mechanics": "None",
+      "isGolden": false,
+      "zonePosition": 4
+    }
+  ],
+  "handCards": [
+    {
+      "entityId": 201,
+      "cardId": "BG21_000",
+      "cost": 0,
+      "isMinion": true,
+      "isSpell": false,
+      "zonePosition": 0
+    },
+    {
+      "entityId": 202,
+      "cardId": "BG_SPELL_BUFF",
+      "cost": 2,
+      "isMinion": false,
+      "isSpell": true,
+      "zonePosition": 1
+    }
+  ],
+  "tavernMinions": [
+    {
+      "entityId": 301,
+      "cardId": "BGS_078",
+      "cost": 3,
+      "tier": 4,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 302,
+      "cardId": "BG26_355",
+      "cost": 3,
+      "tier": 4,
+      "race": "Beast",
+      "isFrozen": false
+    },
+    {
+      "entityId": 303,
+      "cardId": "BG21_016",
+      "cost": 3,
+      "tier": 4,
+      "race": "Pirate",
+      "isFrozen": false
+    },
+    {
+      "entityId": 304,
+      "cardId": "BG20_003",
+      "cost": 3,
+      "tier": 5,
+      "race": "Demon",
+      "isFrozen": false
+    },
+    {
+      "entityId": 305,
+      "cardId": "BG20_004",
+      "cost": 3,
+      "tier": 4,
+      "race": "Elemental",
+      "isFrozen": false
+    },
+    {
+      "entityId": 306,
+      "cardId": "BG20_005",
+      "cost": 3,
+      "tier": 3,
+      "race": "Murloc",
+      "isFrozen": false
+    }
+  ]
+}
